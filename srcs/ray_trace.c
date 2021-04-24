@@ -26,6 +26,8 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 			vec_normalize(ray);
 			if (sp_crossing(sc->cam, ray, sc->sp))
 				color = 16777215;
+			else if (tr_crossing(sc->cam, ray, sc->tr))
+				color = 3455677;
 			else
 				color = 0;
 			mlx_pixel_put(mlx, window, mlx_x, mlx_y, color);

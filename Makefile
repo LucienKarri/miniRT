@@ -10,6 +10,8 @@ SRCS			=	srcs/vector.c \
 					srcs/main.c \
 					srcs/screen.c \
 					srcs/sp_crossing.c \
+					srcs/triangle.c \
+					srcs/tr_crossing.c \
 
 OBJS			=	${SRCS:.c=.o}
 

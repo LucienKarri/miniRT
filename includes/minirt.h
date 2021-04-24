@@ -25,6 +25,7 @@ float	vec_length(t_vec *vec);
 t_vec	*vec_subtract(t_vec *vec1, t_vec *vec2);
 void	vec_normalize(t_vec *vec);
 float	vec_dot_product(t_vec *vec1, t_vec *vec2);
+t_vec	*vec_cross(t_vec *vec1, t_vec *vec2);
 
 /*sphere*/
 typedef struct	s_sp
@@ -45,16 +46,28 @@ typedef struct 	s_cam
 
 t_cam 	*cam_default(t_vec *pos, t_vec *direction, float fov);
 
+/*triangle*/
+typedef struct	s_triangle
+{
+	t_vec	*p1;
+	t_vec	*p2;
+	t_vec	*p3;
+}				t_triangle;
+
+t_triangle	*tr_default(t_vec *p1, t_vec *p2, t_vec *p3);
+int tr_crossing(t_cam *cam, t_vec *ray, t_triangle *tr);
+
 /*scene*/
 typedef struct	s_sc
 {
 	t_cam	*cam;
 	t_sp	*sp;
+	t_triangle	*tr;
 	float	width;
 	float	hight;
 }				t_sc;
 
-t_sc	*sc_default(t_cam *cam, t_sp *sp);
+t_sc	*sc_default(t_cam *cam, t_sp *sp, t_triangle *tr);
 
 /*view screen*/
 typedef struct	s_screen
