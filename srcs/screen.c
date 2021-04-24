@@ -7,7 +7,7 @@ t_screen	*screen_default(float width, float hight, float fov)
 
 	screen = malloc(sizeof(t_screen));
 	ratio = width / hight;
-	screen->width = tan(fov/2 * (M_PI / 180));
+	screen->width = tan(fov / 2 * (M_PI / 180));
 	screen->width *= 2;
 	screen->hight = screen->width / ratio;
 	screen->screen_x = screen->width / width;

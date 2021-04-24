@@ -13,7 +13,7 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 	t_screen	*scr;
 
 	scr = screen_default(sc->width, sc->hight, sc->cam->fov);
-	resolution_y = sc->hight / 2;
+	resolution_y = (sc->hight / 2);
 	while (resolution_y >= (sc->hight / 2) * (-1))
 	{
 		ray_y = resolution_y * scr->screen_y;
