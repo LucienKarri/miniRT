@@ -57,17 +57,28 @@ typedef struct	s_triangle
 t_triangle	*tr_default(t_vec *p1, t_vec *p2, t_vec *p3);
 int tr_crossing(t_cam *cam, t_vec *ray, t_triangle *tr);
 
+/*plane*/
+typedef struct	s_pl
+{
+	t_vec	*crd;
+	t_vec	*nrmd;
+}				t_pl;
+
+t_pl	*pl_default(t_vec *crd, t_vec *nrmd);
+int	pl_intersection(t_cam *cam, t_vec *ray, t_pl *pl);
+
 /*scene*/
 typedef struct	s_sc
 {
 	t_cam	*cam;
 	t_sp	*sp;
 	t_triangle	*tr;
+	t_pl	*pl;
 	float	width;
 	float	hight;
 }				t_sc;
 
-t_sc	*sc_default(t_cam *cam, t_sp *sp, t_triangle *tr);
+t_sc	*sc_default(t_cam *cam, t_sp *sp, t_triangle *tr, t_pl *pl);
 
 /*view screen*/
 typedef struct	s_screen

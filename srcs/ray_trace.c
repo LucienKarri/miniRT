@@ -24,10 +24,12 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 			ray_x = resolution_x * scr->screen_x;
 			ray = vec_default(ray_x, ray_y, -1);
 			vec_normalize(ray);
-			if (sp_crossing(sc->cam, ray, sc->sp))
+			if (pl_intersection(sc->cam, ray, sc->pl))
 				color = 16777215;
-			else if (tr_crossing(sc->cam, ray, sc->tr))
-				color = 3455677;
+//			else if (sp_crossing(sc->cam, ray, sc->sp))
+//				color = 16777215;
+//			else if (tr_crossing(sc->cam, ray, sc->tr))
+//				color = 3455677;
 			else
 				color = 0;
 			mlx_pixel_put(mlx, window, mlx_x, mlx_y, color);
