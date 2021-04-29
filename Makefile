@@ -14,6 +14,8 @@ SRCS			=	srcs/vector.c \
 					srcs/tr_crossing.c \
 					srcs/pl_intersection.c \
 					srcs/plane.c \
+					srcs/cylinder.c \
+					srcs/cy_intersection.c \
 
 OBJS			=	${SRCS:.c=.o}
 

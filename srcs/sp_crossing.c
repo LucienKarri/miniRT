@@ -1,12 +1,13 @@
 #include "../includes/minirt.h"
 
-int	sp_crossing(t_cam *cam, t_vec *ray, t_sp *sp)
+float 	sp_crossing(t_cam *cam, t_vec *ray, t_sp *sp)
 {
 	float b;
 	float c;
 	float discr;
 	float dist_front = 0;
-//	float dist_back = 0;
+	float dist_back = 0;
+	float dist = 100000;
 	t_vec	*cam_to_sp;
 
 	cam_to_sp = vec_subtract(cam->pos, sp->center);
@@ -16,9 +17,11 @@ int	sp_crossing(t_cam *cam, t_vec *ray, t_sp *sp)
 	free(cam_to_sp);
 	if (discr < 0)
 		return (0);
-	dist_front = ((b * (-1)) - sqrt(discr)) / 2;
-//	dist_back = ((b * (-1)) + sqrt(discr)) / 2;
-	if (dist_front > 0)
-		return (1);
-	return (0);
+	dist_back = ((b * (-1)) - sqrt(discr)) / 2;
+	dist_front = ((b * (-1)) + sqrt(discr)) / 2;
+	if (dist_front > 1 && dist_front < dist)
+		dist = dist_front;
+	if (dist_back > 1 && dist_back < dist)
+		dist = dist_back;
+	return (dist);
 }
