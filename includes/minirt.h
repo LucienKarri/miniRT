@@ -17,10 +17,14 @@
 #include "triangle.h"
 #include "plane.h"
 #include "cylinder.h"
+#include "ambient_lightning.h"
+#include "light.h"
 #include "scene.h"
 #include "view_screen.h"
 
 /*ray tracing*/
 void	ray_tracing(void *mlx, void *window, t_sc *sc);
+
+float	lightning(t_vec *p, t_vec *n, t_sc *sc);
 
 #endif

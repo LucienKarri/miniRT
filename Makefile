@@ -16,6 +16,9 @@ SRCS			=	srcs/vector.c \
 					srcs/plane.c \
 					srcs/cylinder.c \
 					srcs/cy_intersection.c \
+					srcs/light.c \
+					srcs/lightning.c \
+					srcs/ambient_lightning.c \
 
 OBJS			=	${SRCS:.c=.o}
 
