@@ -12,8 +12,8 @@
 /*other libraries*/
 #include "mlx.h"
 #include "vector.h"
-#include "sphere.h"
 #include "camera.h"
+#include "sphere.h"
 #include "triangle.h"
 #include "plane.h"
 #include "cylinder.h"
@@ -22,8 +22,5 @@
 
 /*ray tracing*/
 void	ray_tracing(void *mlx, void *window, t_sc *sc);
-
-/*sphere crossing*/
-float		sp_crossing(t_cam *cam, t_vec *ray, t_sp *sp);
 
 #endif

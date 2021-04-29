@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-int tr_crossing(t_cam *cam, t_vec *ray, t_triangle *tr)
+float tr_crossing(t_cam *cam, t_vec *ray, t_tr *tr)
 {
 	t_vec	*edge1;
 	t_vec	*edge2;
@@ -11,7 +11,9 @@ int tr_crossing(t_cam *cam, t_vec *ray, t_triangle *tr)
 	float	det;
 	float	u;
 	float	v;
+	float	dist;
 
+	dist = 0;
 	edge1 = vec_subtract(tr->p2, tr->p1);
 	edge2 = vec_subtract(tr->p3, tr->p1);
 	pvec = vec_cross(ray, edge2);
@@ -27,5 +29,6 @@ int tr_crossing(t_cam *cam, t_vec *ray, t_triangle *tr)
 	v = vec_dot_product(ray, qvec) * inv_det;
 	if (v < 0 || u + v > 1)
 		return (0);
-	return (1);
+	dist = vec_dot_product(edge2, qvec) * inv_det;
+	return (dist);
 }

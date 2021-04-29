@@ -2,26 +2,40 @@
 
 int		ft_intersection(t_sc *scene, t_vec *ray)
 {
-	t_sp	*close_sp = NULL;
+//	t_sp	*close_sp = NULL;
 	t_sp	*tmp_sp;
-	float 	dist;
+//	t_tr	*close_tr = NULL;
+	t_tr	*tmp_tr;
+	int		close_color = 0;
+	float 	dist_sp;
+	float	dist_tr;
 	float	tmp = 100000;
 
 	tmp_sp = scene->sp;
+	tmp_tr = scene->tr;
 	while (tmp_sp != NULL)
 	{
-		dist = sp_crossing(scene->cam, ray, tmp_sp);
-//		printf("%f\n", dist);
-		if (dist < tmp && dist != 0)
+		dist_sp = sp_crossing(scene->cam, ray, tmp_sp);
+		if (dist_sp < tmp && dist_sp != 0)
 		{
-			tmp = dist;
-			close_sp = tmp_sp;
+			tmp = dist_sp;
+			close_color = tmp_sp->color;
 		}
 		tmp_sp = tmp_sp->next;
 	}
-	if (close_sp == NULL)
-		return (0);
-	return (close_sp->color);
+	while (tmp_tr != NULL)
+	{
+		dist_tr = tr_crossing(scene->cam, ray, tmp_tr);
+		if (dist_tr < tmp && dist_tr != 0)
+		{
+			tmp = dist_tr;
+			close_color = tmp_tr->color;
+		}
+		tmp_tr = tmp_tr->next;
+	}
+//	if (close_color == NULL)
+//		return (0);
+	return (close_color);
 }
 
 void	ray_tracing(void *mlx, void *window, t_sc *sc)
@@ -49,10 +63,6 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 			ray = vec_default(ray_x, ray_y, -1);
 			vec_normalize(ray);
 			color = ft_intersection(sc, ray);
-//			if (ft_intersection(sc, ray) == 1)
-//				color = 7234567;
-//			else
-//				color = 0;
 			mlx_pixel_put(mlx, window, mlx_x, mlx_y, color);
 			free(ray);
 			resolution_x++;
