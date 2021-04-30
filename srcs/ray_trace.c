@@ -4,42 +4,59 @@ float		ft_intersection(t_sc *scene, t_vec *ray)
 {
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
-//	t_tr	*tmp_tr;
-//	float	close_color = 0;
+	t_tr	*tmp_tr;
+	t_tr	*close_tr = NULL;
+	float	close_color = 0;
 	float 	dist_sp;
-//	float	dist_tr;
+	float	dist_tr;
+	float	c_sp = 100000;
+	float	c_tr = 100000;
 	float	tmp = 100000;
 	t_vec	*p;
 	t_vec	*nrmd;
 
 	tmp_sp = scene->sp;
-//	tmp_tr = scene->tr;
+	tmp_tr = scene->tr;
 	while (tmp_sp != NULL)
 	{
 		dist_sp = sp_crossing(scene->cam, ray, tmp_sp);
-		if (dist_sp < tmp && dist_sp != 0)
+		if (dist_sp < c_sp && dist_sp != 0)
 		{
-			tmp = dist_sp;
+			c_sp = dist_sp;
 			close_sp = tmp_sp;
 		}
 		tmp_sp = tmp_sp->next;
 	}
-/*	while (tmp_tr != NULL)
+	while (tmp_tr != NULL)
 	{
 		dist_tr = tr_crossing(scene->cam, ray, tmp_tr);
-		if (dist_tr < tmp && dist_tr != 0)
+		if (dist_tr < c_tr && dist_tr != 0)
 		{
-			tmp = dist_tr;
-			close_color = tmp_tr->color;
+			c_tr = dist_tr;
+			close_tr = tmp_tr;
 		}
 		tmp_tr = tmp_tr->next;
-	}*/
-	if (close_sp == NULL)
+	}
+	if (close_tr == NULL && close_sp == NULL)
 		return (0);
+	if (c_sp < c_tr)
+		tmp = c_sp;
+	else
+		tmp = c_tr;
 	p = vec_sum(scene->cam->pos, vec_multiplication(ray, tmp));
-	nrmd = vec_subtract(p, close_sp->center);
-	nrmd = vec_multiplication(nrmd, (1 / vec_length(nrmd)));
-	return (close_sp->color * lightning(p, nrmd, scene));
+	if (c_sp < c_tr)
+	{
+		nrmd = vec_subtract(p, close_sp->center);
+		nrmd = vec_multiplication(nrmd, (1 / vec_length(nrmd)));
+		close_color = close_sp->color;
+	}
+	else
+	{
+		nrmd = vec_cross(vec_subtract(close_tr->p2, close_tr->p1),
+				   vec_subtract(close_tr->p3, close_tr->p1));
+		close_color = close_tr->color;
+	}
+	return (close_color * lightning(p, nrmd, scene));
 }
 
 void	ray_tracing(void *mlx, void *window, t_sc *sc)

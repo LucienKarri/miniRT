@@ -18,7 +18,7 @@ float tr_crossing(t_cam *cam, t_vec *ray, t_tr *tr)
 	edge2 = vec_subtract(tr->p3, tr->p1);
 	pvec = vec_cross(ray, edge2);
 	det = vec_dot_product(edge1, pvec);
-	if (det < 0.000001 && det > -0.000001)
+	if (det < 0.00000001 && det > -0.00000001)
 		return (0);
 	inv_det = 1 / det;
 	tvec = vec_subtract(cam->pos, tr->p1);
