@@ -14,6 +14,12 @@ int mul_color(int trgb, float k)
 	r = r * k;
 	g = g * k;
 	b = b * k;
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
 	return (r << 16 | g << 8 | b << 0);
 }
 

@@ -9,6 +9,7 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 	float	n_to_l;
 	tmp_l = sc->l;
 	al = sc->a;
+	t_sp	*close_sp = NULL;
 	if (al != NULL)
 	{
 		i += al->ratio;
@@ -17,11 +18,17 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 	while (tmp_l != NULL)
 	{
 		light = vec_subtract(tmp_l->v_point, p);
-		n_to_l = vec_dot_product(n, light);
-		if (n_to_l > 0)
+		close_sp = closing_sp(p, light, sc, 1000, 100000);
+		if (close_sp == NULL)
 		{
-			i += (tmp_l->ratio * n_to_l) / (vec_length(n) * vec_length
-					(light));
+			n_to_l = vec_dot_product(n, light);
+			if (n_to_l > 0)
+			{
+				i += (tmp_l->ratio * n_to_l) / (vec_length(n) * vec_length
+						(light));
+//				close_color = color_mixer(close_color, tmp_l->color);
+			}
+//			close_color = color_mixer(close_color, tmp_l->color);
 		}
 		close_color = color_mixer(close_color, tmp_l->color);
 		tmp_l = tmp_l->next;

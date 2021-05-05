@@ -8,6 +8,7 @@ t_sp 	*sp_default(t_vec *center, float diameter, int color)
 	sp->center = center;
 	sp->radius = diameter / 2;
 	sp->color = color;
+	sp->distance = 0;
 	sp->next = NULL;
 	return (sp);
 }

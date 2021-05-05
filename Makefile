@@ -20,6 +20,7 @@ SRCS			=	srcs/vector.c \
 					srcs/lightning.c \
 					srcs/ambient_lightning.c \
 					srcs/color.c \
+					srcs/close_obj.c \
 
 OBJS			=	${SRCS:.c=.o}
 

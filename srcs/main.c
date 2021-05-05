@@ -8,17 +8,17 @@ int		main()
 	mlx = mlx_init();
 
 	t_sp	*sps;
-	t_vec	*sp_center1 = vec_default(0, 0, -5);
-	t_vec	*sp_center4 = vec_default(1, 1, -7);
-	t_vec	*sp_center2 = vec_default(0, -2505, -8);
-//	t_vec	*sp_center3 = vec_default(5, 0, -5);
-	int 	color_sp1 = creat_color(255, 255, 255);
-	int 	color_sp2 = creat_color(255, 255, 255);
-//	int 	color_sp3 = creat_color(151, 0, 1);
-	int 	color_sp4 = creat_color(255, 255, 255);
+	t_vec	*sp_center1 = vec_default(0, 1, -5);
+	t_vec	*sp_center4 = vec_default(-2, -1, -6);
+	t_vec	*sp_center2 = vec_default(0, -5001, 0);
+	t_vec	*sp_center3 = vec_default(1, 1, -8);
+	int 	color_sp1 = creat_color(0, 255, 255);
+	int 	color_sp2 = creat_color(0, 0, 255);
+	int 	color_sp3 = creat_color(255, 0, 255);
+	int 	color_sp4 = creat_color(255, 255, 0);
 	sp_list(&sps, sp_center1, 2, color_sp1);
-	sp_list(&sps, sp_center2, 5000, color_sp2);
-//	sp_list(&sps, sp_center3, 2, color_sp3);
+	sp_list(&sps, sp_center2, 10000, color_sp2);
+	sp_list(&sps, sp_center3, 2, color_sp3);
 	sp_list(&sps, sp_center4, 2, color_sp4);
 
 	t_tr	*trs = NULL;
@@ -37,17 +37,17 @@ int		main()
 
 	t_l		*l;
 	t_vec	*v_p = vec_default(10, 20, 0);
-	int		color_l1 = creat_color(255, 0, 255);
+	int		color_l1 = creat_color(255, 255, 255);
 	int		color_l2 = creat_color(255, 0, 255);
-	int		color_l3 = creat_color(255, 0, 255);
+//	int		color_l3 = creat_color(255, 0, 255);
 	t_vec	*v_p1 = vec_default(-10, 20, 0);
-	t_vec	*v_p2 = vec_default(0, 20, 0);
-	l_list(&l, v_p, 0.6, color_l1);
+//	t_vec	*v_p2 = vec_default(0, 20, 0);
+	l_list(&l, v_p, 0.7, color_l1);
 	l_list(&l, v_p1, 0.4, color_l2);
-	l_list(&l, v_p2, 0.4, color_l3);
+//	l_list(&l, v_p2, 0.4, color_l3);
 
 	int		color_a = creat_color(255, 0, 0);
-	t_a		*a = a_default(0.2, color_a);
+	t_a		*a = a_default(0.3, color_a);
 
 	t_vec 	*pl_c = vec_default(0, 0, 0);
 	t_vec	*pl_n = vec_default(0, -1, 0);
@@ -56,8 +56,8 @@ int		main()
 	t_vec	*cam_direction = vec_default(0, 0, 1);
 	t_cam	*cam = cam_default(cam_pos, cam_direction, 70);
 	t_sc	*sc = sc_default(cam, sps, trs, pl, l, a);
-	sc->width = 720;
-	sc->hight = 720;
+	sc->width = 900;
+	sc->hight = 980;
 	window = mlx_new_window(mlx, sc->width, sc->hight, "GOLOD");
 	ray_tracing(mlx, window, sc);
 	printf("READY!\n");

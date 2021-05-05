@@ -2,31 +2,18 @@
 
 int		ft_intersection(t_sc *scene, t_vec *ray)
 {
-	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
 	t_tr	*tmp_tr;
 	t_tr	*close_tr = NULL;
 	int 	close_color = 0;
-	float 	dist_sp;
 	float	dist_tr;
-	float	c_sp = 100000;
 	float	c_tr = 100000;
 	float	tmp = 100000;
 	t_vec	*p;
 	t_vec	*nrmd;
 
-	tmp_sp = scene->sp;
 	tmp_tr = scene->tr;
-	while (tmp_sp != NULL)
-	{
-		dist_sp = sp_crossing(scene->cam, ray, tmp_sp);
-		if (dist_sp < c_sp && dist_sp != 0)
-		{
-			c_sp = dist_sp;
-			close_sp = tmp_sp;
-		}
-		tmp_sp = tmp_sp->next;
-	}
+	close_sp = closing_sp(scene->cam->pos, ray, scene, 1, 100000);
 	while (tmp_tr != NULL)
 	{
 		dist_tr = tr_crossing(scene->cam, ray, tmp_tr);
@@ -39,18 +26,18 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 	}
 	if (close_tr == NULL && close_sp == NULL)
 		return (0);
-	if (c_sp < c_tr)
-		tmp = c_sp;
-	else if (c_sp > c_tr)
+	if (close_sp->distance < c_tr)
+		tmp = close_sp->distance;
+	else if (close_sp->distance > c_tr)
 		tmp = c_tr;
 	p = vec_sum(scene->cam->pos, vec_multiplication(ray, tmp));
-	if (c_sp < c_tr)
+	if (close_sp->distance < c_tr)
 	{
 		nrmd = vec_subtract(p, close_sp->center);
 		vec_normalize(nrmd);
 		close_color = close_sp->color;
 	}
-	else if (c_tr < c_sp)
+	else if (c_tr < close_sp->distance)
 	{
 		nrmd = vec_cross(vec_subtract(close_tr->p2, close_tr->p1),
 				   vec_subtract(close_tr->p3, close_tr->p1));
