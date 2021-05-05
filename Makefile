@@ -1,4 +1,4 @@
-NAME			=	miniRT
+NAME			=	minirt
 
 INCLUDES		=	./includes/
 
@@ -19,6 +19,7 @@ SRCS			=	srcs/vector.c \
 					srcs/light.c \
 					srcs/lightning.c \
 					srcs/ambient_lightning.c \
+					srcs/color.c \
 
 OBJS			=	${SRCS:.c=.o}
 

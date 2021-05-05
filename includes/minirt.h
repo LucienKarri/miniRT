@@ -11,6 +11,7 @@
 
 /*other libraries*/
 #include "mlx.h"
+#include "color.h"
 #include "vector.h"
 #include "camera.h"
 #include "sphere.h"
@@ -25,6 +26,6 @@
 /*ray tracing*/
 void	ray_tracing(void *mlx, void *window, t_sc *sc);
 
-float	lightning(t_vec *p, t_vec *n, t_sc *sc);
+int	lightning(t_vec *p, t_vec *n, t_sc *sc, int color);
 
 #endif

@@ -7,6 +7,6 @@ typedef struct	s_a
 	int		color;
 }				t_a;
 
-t_a	*a_default(float ratio, float color);
+t_a	*a_default(float ratio, int color);
 
 #endif

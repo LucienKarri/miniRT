@@ -8,6 +8,12 @@ typedef struct	s_vec
 	float 	z;
 }				t_vec;
 
+typedef	struct	s_ray
+{
+	t_vec	*o;
+	t_vec	*dir;
+}				t_ray;
+
 t_vec	*vec_default(float x, float y, float z);
 float	vec_length(t_vec *vec);
 t_vec	*vec_subtract(t_vec *vec1, t_vec *vec2);

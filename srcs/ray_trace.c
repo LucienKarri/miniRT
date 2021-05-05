@@ -1,12 +1,12 @@
 #include "../includes/minirt.h"
 
-float		ft_intersection(t_sc *scene, t_vec *ray)
+int		ft_intersection(t_sc *scene, t_vec *ray)
 {
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
 	t_tr	*tmp_tr;
 	t_tr	*close_tr = NULL;
-	float	close_color = 0;
+	int 	close_color = 0;
 	float 	dist_sp;
 	float	dist_tr;
 	float	c_sp = 100000;
@@ -41,22 +41,23 @@ float		ft_intersection(t_sc *scene, t_vec *ray)
 		return (0);
 	if (c_sp < c_tr)
 		tmp = c_sp;
-	else
+	else if (c_sp > c_tr)
 		tmp = c_tr;
 	p = vec_sum(scene->cam->pos, vec_multiplication(ray, tmp));
 	if (c_sp < c_tr)
 	{
 		nrmd = vec_subtract(p, close_sp->center);
-		nrmd = vec_multiplication(nrmd, (1 / vec_length(nrmd)));
+		vec_normalize(nrmd);
 		close_color = close_sp->color;
 	}
-	else
+	else if (c_tr < c_sp)
 	{
 		nrmd = vec_cross(vec_subtract(close_tr->p2, close_tr->p1),
 				   vec_subtract(close_tr->p3, close_tr->p1));
 		close_color = close_tr->color;
 	}
-	return (close_color * lightning(p, nrmd, scene));
+	close_color = lightning(p, nrmd, scene, close_color);
+	return (close_color);
 }
 
 void	ray_tracing(void *mlx, void *window, t_sc *sc)
@@ -69,7 +70,7 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 	float		ray_y;
 	t_vec		*ray;
 	t_screen	*scr;
-	float		color;
+	int			color;
 
 	scr = screen_default(sc->width, sc->hight, sc->cam->fov);
 	resolution_y = (sc->hight / 2);
@@ -82,6 +83,7 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc)
 		{
 			ray_x = resolution_x * scr->screen_x;
 			ray = vec_default(ray_x, ray_y, -1);
+//			ray = look_at(sc->cam, ray);
 			vec_normalize(ray);
 			color = ft_intersection(sc, ray);
 			mlx_pixel_put(mlx, window, mlx_x, mlx_y, color);
