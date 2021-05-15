@@ -21,9 +21,9 @@ float 	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, float min, float max)
 		return (0);
 	dist_front = ((b * (-1)) + sqrt(discr)) / 2 * a;
 	dist_back = ((b * (-1)) - sqrt(discr)) / 2 * a;
-	if ((dist_front >= min && dist_front <= max)  && dist_front < dist)
+	if ((dist_front > min && dist_front < max)  && dist_front < dist)
 		dist = dist_front;
-	if ((dist_back >= min && dist_back <= max) && dist_back < dist)
+	if ((dist_back > min && dist_back < max) && dist_back < dist)
 		dist = dist_back;
 	return (dist);
 }

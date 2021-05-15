@@ -29,5 +29,8 @@ void	ray_tracing(void *mlx, void *window, t_sc *sc);
 int	lightning(t_vec *p, t_vec *n, t_sc *sc, int color);
 
 t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max);
+t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc);
+
+void	rotation(t_vec *ray, t_vec *dir);
 
 #endif

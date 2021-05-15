@@ -14,13 +14,12 @@ SRCS			=	srcs/vector.c \
 					srcs/tr_crossing.c \
 					srcs/pl_intersection.c \
 					srcs/plane.c \
-					srcs/cylinder.c \
-					srcs/cy_intersection.c \
 					srcs/light.c \
 					srcs/lightning.c \
 					srcs/ambient_lightning.c \
 					srcs/color.c \
 					srcs/close_obj.c \
+					srcs/rotation.c \
 
 OBJS			=	${SRCS:.c=.o}
 
