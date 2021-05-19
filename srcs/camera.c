@@ -8,7 +8,17 @@ t_cam 	*cam_default(t_vec *pos, t_vec *direction, float fov)
 	cam->pos = pos;
 	cam->direction = direction;
 	cam->fov = fov;
+	cam->next = NULL;
 	return (cam);
+}
+
+void 	cam_list(t_cam **cam_list, t_vec *pos, t_vec *direction, float fov)
+{
+	t_cam	*new_cam;
+
+	new_cam = cam_default(pos, direction, fov);
+	new_cam->next = *cam_list;
+	*cam_list = new_cam;
 }
 
 t_vec	*cam_dir(t_cam *cam)
@@ -19,63 +29,46 @@ t_vec	*cam_dir(t_cam *cam)
 	return (res);
 }
 
-t_vec	*cam_right(t_cam *cam)
+t_vec	*cam_right(t_vec *dir)
 {
 	t_vec	*up;
 	t_vec	*res;
-	if (cam->direction->x == 0 && (cam->direction->y == 1 || cam->direction->y
-	== -1) && cam->direction->z == 0)
+	if (dir->x == 0 && (dir->y == 1 || dir->y
+	== -1) && dir->z == 0)
 		up = vec_default(0, 0, 1);
 	else
 		up = vec_default(0, 1, 0);
-	res = vec_cross(up, cam_dir(cam));
+	res = vec_cross(up, dir);
 	vec_normalize(res);
 	return (res);
 }
 
-t_vec	*cam_up(t_cam *cam)
+t_vec	*cam_up(t_vec *right, t_vec *dir)
 {
 	t_vec	*res;
 
-	res = vec_cross(cam_dir(cam), cam_right(cam));
+	res = vec_cross(dir, right);
 	return (res);
 }
 
 t_vec	*look_at(t_cam *cam, t_vec *ray)
 {
-	t_vec	*right = cam_right(cam);
-	t_vec	*up = cam_up(cam);
 	t_vec	*dir = cam_dir(cam);
-	t_vec	*temp;
+	t_vec	*right = cam_right(dir);
+	t_vec	*up = cam_up(right, dir);
 	float 	a[3][3];
-	int		i = 0;
-	int		j;
+	a[0][0] = right->x;
+	a[0][1] = right->y;
+	a[0][2] = right->z;
+	a[1][0] = up->x;
+	a[1][1] = up->y;
+	a[1][2] = up->z;
+	a[2][0] = dir->x;
+	a[2][1] = dir->y;
+	a[2][2] = dir->z;
 	t_vec	*result = vec_default(0, 0, 0);
-	while (i < 3)
-	{
-		j = 0;
-		if (i == 0)
-			temp = right;
-		if (i == 1)
-			temp = up;
-		if (i == 2)
-			temp = dir;
-		while (j < 3)
-		{
-			if (j == 0)
-				a[i][j] = temp->x;
-			if (j == 1)
-				a[i][j] = temp->y;
-			if (j == 2)
-				a[i][j] = temp->z;
-			j++;
-		}
-		i++;
-	}
 	result->x = (a[0][0] * ray->x) + (a[1][0] * ray->y) + (a[2][0] * ray->z);
 	result->y = (a[0][1] * ray->x) + (a[1][1] * ray->y) + (a[2][1] * ray->z);
 	result->z = (a[0][2] * ray->x) + (a[1][2] * ray->y) + (a[2][2] * ray->z);
-//	printf("%f, %f, %f\n", ray->x, ray->y, ray->z);
-//	printf("%f, %f, %f\n\n", result->x, result->y, result->z);
 	return (result);
 }

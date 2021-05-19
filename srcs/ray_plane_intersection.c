@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-int	pl_intersection(t_cam *cam, t_vec *ray, t_pl *pl)
+float	pl_intersection(t_vec *pos, t_vec *ray, t_pl *pl)
 {
 	float den;
 	float t;
@@ -9,10 +9,10 @@ int	pl_intersection(t_cam *cam, t_vec *ray, t_pl *pl)
 	den = vec_dot_product(pl->nrmd, ray);
 	if (den > 0.000001)
 	{
-		cam_to_pl = vec_subtract(pl->crd, cam->pos);
+		cam_to_pl = vec_subtract(pl->crd, pos);
 		t = vec_dot_product(cam_to_pl, pl->nrmd) / den;
 		if (t >= 0)
-			return (1);
+			return (t);
 	}
 	return (0);
 }

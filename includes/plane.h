@@ -3,11 +3,15 @@
 
 typedef struct	s_pl
 {
-	t_vec	*crd;
-	t_vec	*nrmd;
+	t_vec		*crd;
+	t_vec		*nrmd;
+	int			color;
+	float		distance;
+	struct s_pl	*next;
 }				t_pl;
 
-t_pl	*pl_default(t_vec *crd, t_vec *nrmd);
-int	pl_intersection(t_cam *cam, t_vec *ray, t_pl *pl);
+t_pl	*pl_default(t_vec *crd, t_vec *nrmd, int color);
+void	pl_list(t_pl **pl_list, t_vec *crd, t_vec *nrmd, int color);
+float	pl_intersection(t_vec *pos, t_vec *ray, t_pl *pl);
 
 #endif

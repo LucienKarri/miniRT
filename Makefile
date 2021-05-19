@@ -5,21 +5,23 @@ INCLUDES		=	./includes/
 SRCS			=	srcs/vector.c \
 					srcs/camera.c \
 					srcs/scene.c \
+					srcs/data.c \
 					srcs/sphere.c \
 					srcs/ray_trace.c \
 					srcs/main.c \
 					srcs/screen.c \
-					srcs/sp_crossing.c \
 					srcs/triangle.c \
-					srcs/tr_crossing.c \
-					srcs/pl_intersection.c \
 					srcs/plane.c \
+					srcs/square.c \
 					srcs/light.c \
 					srcs/lightning.c \
 					srcs/ambient_lightning.c \
 					srcs/color.c \
-					srcs/close_obj.c \
-					srcs/rotation.c \
+					srcs/ray_sphere_intersection.c \
+					srcs/ray_triangle_intersection.c \
+					srcs/ray_plane_intersection.c \
+					srcs/closest_objects.c \
+#				srcs/char_to.c \
 
 OBJS			=	${SRCS:.c=.o}
 

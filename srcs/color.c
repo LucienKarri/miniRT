@@ -7,7 +7,6 @@ int	creat_color(int r, int g, int b)
 
 int mul_color(int trgb, float k)
 {
-//	printf("%i\n", trgb);
 	int	r = ((trgb & (0xFF << 16)) >> 16);
 	int	g = ((trgb & (0xFF << 8)) >> 8);
 	int	b = ((trgb & (0xFF << 0)) >> 0);

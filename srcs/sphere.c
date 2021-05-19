@@ -4,7 +4,7 @@ t_sp 	*sp_default(t_vec *center, float diameter, int color)
 {
 	t_sp 	*sp;
 
-	sp =(t_sp *)malloc(sizeof(t_sp));
+	sp =malloc(sizeof(t_sp));
 	sp->center = center;
 	sp->radius = diameter / 2;
 	sp->color = color;
@@ -20,4 +20,17 @@ void 	sp_list(t_sp **sp_list, t_vec *center, float diameter, int color)
 	new_sp = sp_default(center, diameter, color);
 	new_sp->next = *sp_list;
 	*sp_list = new_sp;
+}
+
+void	debug_sp(t_sp *sp)
+{
+	int i = 0;
+
+
+	while (sp != NULL) 
+	{
+		printf("%d: %d\n", i++, sp->color);
+
+		sp = sp->next;
+	}
 }

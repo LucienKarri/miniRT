@@ -2,25 +2,25 @@
 
 t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max)
 {
+	static int jopa;
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
 	float 	dist_sp;
 	float	c_sp = 100000;
 	tmp_sp = sc->sp;
+//	printf("tester\n");
+	printf("%d\n", jopa++);
 	while (tmp_sp != NULL)
 	{
-//		printf("test\n");
-	//	printf("%f, %f, %f\n\n", tmp_sp->center->x, tmp_sp->center->y,
-	//	 tmp_sp->center->z);
-	//	tmp_sp->center = look_at(sc->cam, tmp_sp->center);
+		write(1, "test\n", 6);
+//		printf("color: %i\n", tmp_sp->color);
 		dist_sp = sp_crossing(pos, ray, tmp_sp, min, max);
-//		if (dist_sp != 0)
-//			printf("test\n");
 		if (dist_sp < c_sp && dist_sp != 0)
 		{
 			c_sp = dist_sp;
 			close_sp = tmp_sp;
 		}
+		printf("%p\n", tmp_sp->next);
 		tmp_sp = tmp_sp->next;
 	}
 	if (close_sp == NULL)
@@ -38,9 +38,8 @@ t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc)
 	tmp_tr = sc->tr;
 	while (tmp_tr != NULL)
 	{
+//		printf("count of triangles\n");
 		dist_tr = tr_crossing(pos, ray, tmp_tr);
-//		if (dist_tr > 0)
-//			printf("%f\n", dist_tr);
 		if (dist_tr < c_tr && dist_tr != 0)
 		{
 			c_tr = dist_tr;
@@ -52,4 +51,31 @@ t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc)
 		return (0);
 	close_tr->distance = c_tr;
 	return (close_tr);
+}
+
+t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
+{
+	t_pl	*close_pl = NULL;
+	t_pl	*tmp;
+	float	dist_pl;
+	float	c_pl = 100000;
+	tmp = sc->pl;
+	int i = 1;
+	while (tmp != NULL)
+	{
+//		printf("count of planes\n\n");
+		dist_pl = pl_intersection(pos, ray, tmp);
+		if (dist_pl < c_pl && dist_pl != 0)
+		{
+			c_pl = dist_pl;
+			close_pl = tmp;
+		}
+		printf(" plane = %p\n", tmp->next);
+		tmp = tmp->next;
+		i++;
+	}
+	if (close_pl == NULL)
+		return (0);
+	close_pl->distance = c_pl;
+	return (close_pl);
 }
