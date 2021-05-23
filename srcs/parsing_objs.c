@@ -18,11 +18,11 @@ int	parsing_sphere(t_sc *scene, char *line)
 		{
 			count++;
 			if (count == 1)
-				i = ft_ato_vec(&line[i], &center);
+				i += ft_ato_vec(&line[i], &center);
 			if (count == 2)
-				i = ft_ato_float(&line[i], &radius);
+				i += ft_ato_float(&line[i], &radius);
 			if (count == 3)
-				i = ft_ato_col(&line[i], &color);
+				i += ft_ato_col(&line[i], &color);
 		}
 	}
 	sp_list(&scene->sp, center, radius, color);
@@ -44,9 +44,9 @@ int parsing_resolution(t_sc *scene, char *line)
 		{
 			count++;
 			if (count == 1)
-				i = ft_atoi(&line[i], &scene->width);
+				i += ft_atoi(&line[i], &scene->width);
 			if (count == 2)
-				i = ft_atoi(&line[i], &scene->hight);
+				i += ft_atoi(&line[i], &scene->hight);
 		}
 	}
 	return (0);
@@ -69,11 +69,11 @@ int parsing_cam(t_sc *scene, char *line)
 		{
 			count++;
 			if (count == 1)
-				i = ft_ato_vec(&line[i], &pos);
+				i += ft_ato_vec(&line[i], &pos);
 			if (count == 2)
-				i = ft_ato_vec(&line[i], &dir);
+				i += ft_ato_vec(&line[i], &dir);
 			if (count == 3)
-				i = ft_ato_float(&line[i], &fov);
+				i += ft_ato_float(&line[i], &fov);
 		}
 	}
 	cam_list(&scene->cam, pos, dir, fov);
@@ -98,11 +98,11 @@ int parsing_light(t_sc *scene, char *line)
 		{
 			count++;
 			if (count == 1)
-				i = ft_ato_vec(&line[i], &pos);
+				i += ft_ato_vec(&line[i], &pos);
 			if (count == 2)
-				i = ft_ato_float(&line[i], &ratio);
+				i += ft_ato_float(&line[i], &ratio);
 			if (count == 3)
-				i = ft_ato_col(&line[i], &color);
+				i += ft_ato_col(&line[i], &color);
 		}
 	}
 	l_list(&scene->l, pos, ratio, color);
@@ -115,7 +115,7 @@ int parsing_ambient_light(t_sc *scene, char *line)
 	int		count = 0;
 	int 	color;
 	float	ratio;
-
+	t_a		*ambient;
 	while (count <= 2)
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
@@ -126,11 +126,13 @@ int parsing_ambient_light(t_sc *scene, char *line)
 		{
 			count++;
 			if (count == 1)
-				i = ft_ato_float(&line[i], &ratio);
+				i += ft_ato_float(&line[i], &ratio);
 			if (count == 2)
-				i = ft_ato_col(&line[i], &color);
+				i += ft_ato_col(&line[i], &color);
 		}
+//		printf("%f\n", ratio);
 	}
-	scene->a = a_default(ratio, color);
+	ambient = a_default(ratio, color);
+	scene->a = ambient;
 	return (0);
 }

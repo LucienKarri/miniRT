@@ -10,7 +10,7 @@
 #include <fcntl.h>
 
 /*other libraries*/
-#include "mlx.h"
+#include "../mlx_linux/mlx.h"
 #include "data.h"
 #include "color.h"
 #include "vector.h"

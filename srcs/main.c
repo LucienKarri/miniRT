@@ -1,20 +1,20 @@
 #include "../includes/minirt.h"
 
-int		main()
+int		main(int argc, char **argv)
 {
-//	int		fd;
+	int		fd;
 	void	*mlx;
 	void	*window;
 	t_data	img;
 	t_all	*new_all;
-//	t_sc	*new_sc;
-//	(void)argc;
+	t_sc	*new_sc;
+	(void)argc;
 
 	mlx = mlx_init();
 
-//	fd = open(argv[1], O_RDONLY);
-//	new_sc = parsing(fd);
-	t_sp	*sps = NULL;
+	fd = open(argv[1], O_RDONLY);
+	new_sc = parsing(fd);
+/*	t_sp	*sps = NULL;
 	t_vec	*sp_center1 = vec_default(0, 0, 5);
 	t_vec	*sp_center2 = vec_default(-2, 2, 7);
 	t_vec	*sp_center3 = vec_default(0, 4, 9);
@@ -95,12 +95,12 @@ int		main()
 	cam_list(&cams, cam_pos2, cam_direction2, 60);
 	t_sc	*sc = sc_default(cams, sps, trs, pls, l, a);
 	sc->width = 1280;
-	sc->hight = 720;
-	window = mlx_new_window(mlx, sc->width, sc->hight, "GOLOD");
-	img.img = mlx_new_image(mlx, sc->width, sc->hight);
+	sc->hight = 720;*/
+	window = mlx_new_window(mlx, new_sc->width, new_sc->hight, "GOLOD");
+	img.img = mlx_new_image(mlx, new_sc->width, new_sc->hight);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img
 	.line_length, &img.endian);
-	new_all = all_default(mlx, window, sc, &img);
+	new_all = all_default(mlx, window, new_sc, &img);
 //	printf("test\n");
 	ray_tracing(new_all->data, new_all->sc);
 	mlx_put_image_to_window(new_all->mlx, new_all->win, new_all->data->img, 0,

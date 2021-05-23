@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/minirt",
-            "args": [],
+            "args": test.rt,
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

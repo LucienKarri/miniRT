@@ -32,23 +32,23 @@ SRCS			=	srcs/vector.c \
 
 OBJS			=	${SRCS:.c=.o}
 
-MLX				=	minilibx-linux/*.a
+MLX				=	mlx_linux/*.a
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g
 
-LFLAGS			=	-L.. -lmlx -lXext -lX11 -lm -lbsd
+LFLAGS			=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lbsd
 
 RM				=	rm -rf
 
 .c.o:
-				${CC} ${CFLAGS} -I ${INCLUDES} -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} -I ${INCLUDES} -Imlx_linux -O3 -c $< -o ${<:.c=.o}
 
 all:			${NAME}
 
 ${NAME}:		${OBJS}
-						${CC} ${CFLAGS} -I ${INCLUDES} ${OBJS} ${MLX} ${LFLAGS} -o ${NAME}
+						${CC} ${CFLAGS} -I ${INCLUDES} ${OBJS} -L ${MLX} ${LFLAGS} -o ${NAME}
 
 clean:
 				${RM} ${OBJS}
