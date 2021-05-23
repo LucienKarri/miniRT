@@ -130,7 +130,6 @@ int parsing_ambient_light(t_sc *scene, char *line)
 			if (count == 2)
 				i += ft_ato_col(&line[i], &color);
 		}
-//		printf("%f\n", ratio);
 	}
 	ambient = a_default(ratio, color);
 	scene->a = ambient;

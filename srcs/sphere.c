@@ -21,16 +21,3 @@ void 	sp_list(t_sp **sp_list, t_vec *center, float diameter, int color)
 	new_sp->next = *sp_list;
 	*sp_list = new_sp;
 }
-
-void	debug_sp(t_sp *sp)
-{
-	int i = 0;
-
-
-	while (sp != NULL) 
-	{
-		printf("%d: %d\n", i++, sp->color);
-
-		sp = sp->next;
-	}
-}
