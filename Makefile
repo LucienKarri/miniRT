@@ -28,7 +28,7 @@ SRCS			=	srcs/vector.c \
 					srcs/char_to.c \
 					srcs/get_next_line/get_next_line.c \
 					srcs/get_next_line/get_next_line_utils.c \
-#				srcs/char_to.c \
+					srcs/rotate_camera.c \
 
 OBJS			=	${SRCS:.c=.o}
 

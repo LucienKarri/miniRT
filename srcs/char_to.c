@@ -1,11 +1,11 @@
 #include "../includes/minirt.h"
 
-int             ft_atoi(char *str, int *number)
+int	ft_atoi(char *str, int *number)
 {
-	int i;
-	int znak;
-	long num;
-	long output;
+	int		i;
+	int		znak;
+	long	num;
+	long	output;
 
 	i = 0;
 	output = 0;
@@ -52,14 +52,15 @@ int	ft_ato_float(char *str, float *number)
 	return (i);
 }
 
-int ft_ato_vec(char *str, t_vec **vec)
+int	ft_ato_vec(char *str, t_vec **vec)
 {
-	int	i;
-	int xyz;
-	int writed;
+	int		i;
+	int		xyz;
+	int		writed;
+	float	v[3];
+
 	i = 0;
 	xyz = 0;
-	float v[3];
 	while (xyz < 3)
 	{
 		if ((writed = ft_ato_float(&str[i], &v[xyz])) < 0)
@@ -76,15 +77,16 @@ int ft_ato_vec(char *str, t_vec **vec)
 	return (i);
 }
 
-int ft_ato_col(char *str, int *color)
+int	ft_ato_col(char *str, int *color)
 {
-	int i;
-	int writen;
-	int canal;
-	int rgb[3];
+	int	i;
+	int	writen;
+	int	canal;
+	int	rgb[3];
 
 	i = 0;
 	canal = 0;
+	writen = 0;
 	while (canal < 3)
 	{
 		if ((writen = ft_atoi(&str[i], &rgb[canal])) < 0)
