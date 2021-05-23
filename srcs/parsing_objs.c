@@ -135,3 +135,64 @@ int parsing_ambient_light(t_sc *scene, char *line)
 	scene->a = ambient;
 	return (0);
 }
+
+int	parsing_triangle(t_sc *scene, char *line)
+{
+	int		i = 2;
+	int		count = 0;
+	int 	color;
+	t_vec	*first;
+	t_vec	*second;
+	t_vec	*third;
+
+	while (count <= 4)
+	{
+		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
+			i++;
+		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+			return (-1);
+		else
+		{
+			count++;
+			if (count == 1)
+				i += ft_ato_vec(&line[i], &first);
+			if (count == 2)
+				i += ft_ato_vec(&line[i], &second);
+			if (count == 3)
+				i += ft_ato_vec(&line[i], &third);
+			if (count == 4)
+				i += ft_ato_col(&line[i], &color);
+		}
+	}
+	tr_list(&scene->tr, first, second, third, color);
+	return (0);
+}
+
+int	parsing_plane(t_sc *scene, char *line)
+{
+	int		i = 2;
+	int		count = 0;
+	int 	color;
+	t_vec	*pos;
+	t_vec	*nrmd;
+
+	while (count <= 3)
+	{
+		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
+			i++;
+		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+			return (-1);
+		else
+		{
+			count++;
+			if (count == 1)
+				i += ft_ato_vec(&line[i], &pos);
+			if (count == 2)
+				i += ft_ato_vec(&line[i], &nrmd);
+			if (count == 3)
+				i += ft_ato_col(&line[i], &color);
+		}
+	}
+	pl_list(&scene->pl, pos, nrmd, color);
+	return (0);
+}

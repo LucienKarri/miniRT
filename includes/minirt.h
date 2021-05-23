@@ -35,19 +35,20 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max);
 t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc);
 t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc);
 
-int ft_ato_col(char *str, int *color);
-int ft_ato_vec(char *str, t_vec **vec);
-int	ft_ato_float(char *str, float *number);
-int	ft_atoi(char *str, int *number);
+int     ft_ato_col(char *str, int *color);
+int     ft_ato_vec(char *str, t_vec **vec);
+int     ft_ato_float(char *str, float *number);
+int     ft_atoi(char *str, int *number);
 
 int		keys_control(int keycode, t_all *all);
 t_sc	*parsing(int fd);
 int		choise_element(t_sc *sc, char *line);
 int		parsing_sphere(t_sc *scene, char *line);
-int parsing_resolution(t_sc *scene, char *line);
-int parsing_cam(t_sc *scene, char *line);
-int parsing_light(t_sc *scene, char *line);
-int parsing_ambient_light(t_sc *scene, char *line);
+int     parsing_resolution(t_sc *scene, char *line);
+int     parsing_cam(t_sc *scene, char *line);
+int     parsing_light(t_sc *scene, char *line);
+int     parsing_ambient_light(t_sc *scene, char *line);
+int     parsing_triangle(t_sc *scene, char *line);
+int     parsing_plane(t_sc *scene, char *line);
 
-void	debug_sp(t_sp *sp);
 #endif

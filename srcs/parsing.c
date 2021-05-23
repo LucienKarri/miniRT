@@ -14,10 +14,10 @@ int		choise_element(t_sc *sc, char *line)
 			return (parsing_light(sc, line));
 		else if (line[0] == 's' && line[1] == 'p')
 			return (parsing_sphere(sc, line));
-//		else if (line[0] == 't' && line[1] == 'r')
-//			return ();
-//		else if (line[0] == 'p' && line[1] == 'l')
-//			return ();
+		else if (line[0] == 't' && line[1] == 'r')
+			return (parsing_triangle(sc, line));
+		else if (line[0] == 'p' && line[1] == 'l')
+			return (parsing_plane(sc, line));
 		else
 			return (-1);
 	}
