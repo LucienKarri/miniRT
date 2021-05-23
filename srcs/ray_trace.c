@@ -43,7 +43,7 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 		vec_normalize(nrmd);
 		close_color = close_sp->color;
 	}
-	else if (tmp == c_tr)
+	else if (tmp == c_tr && close_tr != NULL)
 	{
 		nrmd = vec_cross(vec_subtract(close_tr->p2, close_tr->p1),
 				   vec_subtract(close_tr->p3, close_tr->p1));

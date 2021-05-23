@@ -64,14 +64,14 @@ int ft_ato_vec(char *str, t_vec **vec)
 	{
 		if ((writed = ft_ato_float(&str[i], &v[xyz])) < 0)
 			return (-1);
-		i = i + r;
+		i = i + writed;
 		if (xyz < 2 && str[i] != ',')
 			return (-1);
 		else if (xyz < 2 && str[i] == ',')
 			i++;
 		xyz++;
 	}
-	if (!(*vec = vec_default(xyz[0], xyz[1], xyz[2])))
+	if (!(*vec = vec_default(v[0], v[1], v[2])))
 		return (-1);
 	return (i);
 }

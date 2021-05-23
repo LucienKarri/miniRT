@@ -15,3 +15,19 @@ t_sc	*sc_default(t_cam *cam, t_sp *sp, t_tr *tr, t_pl *pl, t_l *l, t_a *a)
 	sc->hight = 0;
 	return (sc);
 }
+
+t_sc	*empty_scene(int color)
+{
+	t_sc	*sc;
+
+	sc = malloc(sizeof(t_sc));
+	sc->cam = NULL;
+	sc->sp = NULL;
+	sc->tr = NULL;
+	sc->pl = NULL;
+	sc->l = NULL;
+	sc->a = NULL;
+	sc->width = color;
+	sc->hight = 0;
+	return (sc);
+}

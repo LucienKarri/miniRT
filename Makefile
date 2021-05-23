@@ -21,6 +21,13 @@ SRCS			=	srcs/vector.c \
 					srcs/ray_triangle_intersection.c \
 					srcs/ray_plane_intersection.c \
 					srcs/closest_objects.c \
+					srcs/keys.c \
+					srcs/all.c \
+					srcs/parsing.c \
+					srcs/parsing_objs.c \
+					srcs/char_to.c \
+					srcs/get_next_line/get_next_line.c \
+					srcs/get_next_line/get_next_line_utils.c \
 #				srcs/char_to.c \
 
 OBJS			=	${SRCS:.c=.o}

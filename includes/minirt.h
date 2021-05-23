@@ -12,7 +12,6 @@
 /*other libraries*/
 #include "mlx.h"
 #include "data.h"
-#include "keys.h"
 #include "color.h"
 #include "vector.h"
 #include "camera.h"
@@ -23,7 +22,9 @@
 #include "ambient_lightning.h"
 #include "light.h"
 #include "scene.h"
+#include "all.h"
 #include "view_screen.h"
+#include "../srcs/get_next_line/get_next_line.h"
 
 /*ray tracing*/
 void	ray_tracing(t_data *data, t_sc *sc);
@@ -38,6 +39,15 @@ int ft_ato_col(char *str, int *color);
 int ft_ato_vec(char *str, t_vec **vec);
 int	ft_ato_float(char *str, float *number);
 int	ft_atoi(char *str, int *number);
+
+int		keys_control(int keycode, t_all *all);
+t_sc	*parsing(int fd);
+int		choise_element(t_sc *sc, char *line);
+int		parsing_sphere(t_sc *scene, char *line);
+int parsing_resolution(t_sc *scene, char *line);
+int parsing_cam(t_sc *scene, char *line);
+int parsing_light(t_sc *scene, char *line);
+int parsing_ambient_light(t_sc *scene, char *line);
 
 void	debug_sp(t_sp *sp);
 #endif

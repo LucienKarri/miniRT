@@ -2,17 +2,14 @@
 
 t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max)
 {
-	static int jopa;
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
 	float 	dist_sp;
 	float	c_sp = 100000;
 	tmp_sp = sc->sp;
 //	printf("tester\n");
-	printf("%d\n", jopa++);
 	while (tmp_sp != NULL)
 	{
-		write(1, "test\n", 6);
 //		printf("color: %i\n", tmp_sp->color);
 		dist_sp = sp_crossing(pos, ray, tmp_sp, min, max);
 		if (dist_sp < c_sp && dist_sp != 0)
@@ -20,7 +17,6 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max)
 			c_sp = dist_sp;
 			close_sp = tmp_sp;
 		}
-		printf("%p\n", tmp_sp->next);
 		tmp_sp = tmp_sp->next;
 	}
 	if (close_sp == NULL)
@@ -70,7 +66,6 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 			c_pl = dist_pl;
 			close_pl = tmp;
 		}
-		printf(" plane = %p\n", tmp->next);
 		tmp = tmp->next;
 		i++;
 	}
