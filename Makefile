@@ -36,7 +36,7 @@ MLX				=	mlx_linux/*.a
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g
 
 LFLAGS			=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lbsd
 
