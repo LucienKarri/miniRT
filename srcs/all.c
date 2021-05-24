@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_all	*all_default(void *mlx, void *win, t_sc *sc, t_data *data)
+t_all	*all_default(void *mlx, t_sc *sc, t_data *data)
 {
 	t_all	*new;
 
@@ -8,6 +8,6 @@ t_all	*all_default(void *mlx, void *win, t_sc *sc, t_data *data)
 	new->data = data;
 	new->sc = sc;
 	new->mlx = mlx;
-	new->win = win;
+	new->win = NULL;
 	return (new);
 }

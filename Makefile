@@ -29,6 +29,7 @@ SRCS			=	srcs/vector.c \
 					srcs/get_next_line/get_next_line.c \
 					srcs/get_next_line/get_next_line_utils.c \
 					srcs/rotate_camera.c \
+					srcs/bmp_file.c \
 
 OBJS			=	${SRCS:.c=.o}
 
@@ -36,7 +37,7 @@ MLX				=	mlx_linux/*.a
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-Wall  -Wextra -g
 
 LFLAGS			=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lbsd
 

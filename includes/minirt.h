@@ -51,4 +51,8 @@ int     parsing_ambient_light(t_sc *scene, char *line);
 int     parsing_triangle(t_sc *scene, char *line);
 int     parsing_plane(t_sc *scene, char *line);
 
+void    bmp_file(t_all *all);
+void    bmp_info(t_all *all, int fd);
+void    bmp_header(t_all *all, int fd);
+
 #endif
