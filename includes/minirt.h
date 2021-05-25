@@ -24,6 +24,7 @@
 #include "scene.h"
 #include "all.h"
 #include "view_screen.h"
+#include "error_and_exit.h"
 #include "../srcs/get_next_line/get_next_line.h"
 
 /*ray tracing*/
@@ -54,5 +55,7 @@ int     parsing_plane(t_sc *scene, char *line);
 void    bmp_file(t_all *all);
 void    bmp_info(t_all *all, int fd);
 void    bmp_header(t_all *all, int fd);
+
+int ft_strcmp(const char *str1, const char *str2);
 
 #endif

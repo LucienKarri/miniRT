@@ -9,6 +9,6 @@ typedef struct	s_all
 	void	*win;
 }				t_all;
 
-t_all	*all_default(void *mlx, t_sc *sc, t_data *data);
+t_all	*all_default(t_sc *sc, t_data *img);
 
 #endif
