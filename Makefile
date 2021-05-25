@@ -8,7 +8,7 @@ SRCS			=	srcs/vector.c \
 					srcs/data.c \
 					srcs/sphere.c \
 					srcs/ray_trace.c \
-					srcs/main.c \
+					minirt.c \
 					srcs/screen.c \
 					srcs/triangle.c \
 					srcs/plane.c \
