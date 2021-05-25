@@ -3,28 +3,28 @@ NAME			=	minirt
 INCLUDES		=	./includes/
 
 SRCS			=	srcs/vector.c \
-					srcs/camera.c \
+					srcs/elements/camera.c \
 					srcs/scene.c \
 					srcs/data.c \
-					srcs/sphere.c \
+					srcs/elements/sphere.c \
 					srcs/ray_trace.c \
 					minirt.c \
 					srcs/screen.c \
-					srcs/triangle.c \
-					srcs/plane.c \
-					srcs/square.c \
-					srcs/light.c \
+					srcs/elements/triangle.c \
+					srcs/elements/plane.c \
+					srcs/elements/square.c \
+					srcs/elements/light.c \
 					srcs/lightning.c \
-					srcs/ambient_lightning.c \
+					srcs/elements/ambient_lightning.c \
 					srcs/color.c \
-					srcs/ray_sphere_intersection.c \
-					srcs/ray_triangle_intersection.c \
-					srcs/ray_plane_intersection.c \
+					srcs/intersections/ray_sphere_intersection.c \
+					srcs/intersections/ray_triangle_intersection.c \
+					srcs/intersections/ray_plane_intersection.c \
 					srcs/closest_objects.c \
 					srcs/keys.c \
 					srcs/all.c \
-					srcs/parsing.c \
-					srcs/parsing_objs.c \
+					srcs/parse/parsing.c \
+					srcs/parse/parsing_objs.c \
 					srcs/char_to.c \
 					srcs/get_next_line.c \
 					srcs/get_next_line_utils.c \

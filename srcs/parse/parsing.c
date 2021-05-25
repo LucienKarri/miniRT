@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-int		choise_element(t_sc *sc, char *line)
+int	choise_element(t_sc *sc, char *line)
 {
 	if (line[0] != '\0')
 	{
@@ -31,13 +31,17 @@ t_sc	*parsing(int fd)
 	int		rd;
 
 	new_scene = empty_scene(0);
-	while ((rd = get_next_line(fd, &line)) > 0)
+	rd = get_next_line(fd, &line);
+	while (rd > 0)
 	{
-		if ((rd = choise_element(new_scene, line)) < 0)
+		rd = choise_element(new_scene, line);
+		if (rd < 0)
 			return (NULL);
 		free(line);
+		rd = get_next_line(fd, &line);
 	}
-	if (rd < 0 || (rd = choise_element(new_scene, line)) < 0)
+	rd = choise_element(new_scene, line);
+	if (rd < 0)
 		return (NULL);
 	return (new_scene);
 }

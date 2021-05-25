@@ -4,7 +4,9 @@ t_sq	*sq_default(t_vec *center, t_vec *nrmd, float side, int color)
 {
 	t_sq	*sq;
 
-	sq = (t_sq *)malloc(sizeof(t_sq));
+	sq = malloc(sizeof(t_sq));
+	if (!sq)
+		error_and_exit(-1);
 	sq->center = center;
 	sq->nrmd = nrmd;
 	sq->side = side;

@@ -16,5 +16,9 @@ void    error_and_exit(int code)
         write(STDERR_FILENO, "Error: Invalid scene description\n", 26);
     if (code == -7)
         write(STDERR_FILENO, "Error: Error with ""save""\n", 24);
+    if (code == -8)
+        write(STDERR_FILENO, "Error: Bad resolution\n", 24);
+    if (code == -9)
+        write(STDERR_FILENO, "Error: Bad range\n", 24);
     exit(code);
 }

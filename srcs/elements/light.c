@@ -1,10 +1,12 @@
 #include "../includes/minirt.h"
 
-t_l		*l_default(t_vec *v_point, float ratio, int color)
+t_l	*l_default(t_vec *v_point, float ratio, int color)
 {
 	t_l	*l;
 
-	l = (t_l *)malloc(sizeof(t_l));
+	l = malloc(sizeof(t_l));
+	if (!l)
+		error_and_exit(-1);
 	l->v_point = v_point;
 	l->ratio = ratio;
 	l->color = color;

@@ -2,9 +2,11 @@
 
 t_sp 	*sp_default(t_vec *center, float diameter, int color)
 {
-	t_sp 	*sp;
+	t_sp	*sp;
 
-	sp =malloc(sizeof(t_sp));
+	sp = malloc(sizeof(t_sp));
+	if (!sp)
+		error_and_exit(-1);
 	sp->center = center;
 	sp->radius = diameter / 2;
 	sp->color = color;

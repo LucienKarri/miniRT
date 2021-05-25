@@ -2,9 +2,11 @@
 
 t_tr 	*tr_default(t_vec *p1, t_vec *p2, t_vec *p3, int color)
 {
-	t_tr 	*tr;
+	t_tr	*tr;
 
 	tr = (t_tr *)malloc(sizeof(t_tr));
+	if (!tr)
+		error_and_exit(-1);
 	tr->p1 = p1;
 	tr->p2 = p2;
 	tr->p3 = p3;
