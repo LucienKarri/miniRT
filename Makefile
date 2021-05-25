@@ -26,8 +26,8 @@ SRCS			=	srcs/vector.c \
 					srcs/parsing.c \
 					srcs/parsing_objs.c \
 					srcs/char_to.c \
-					srcs/get_next_line/get_next_line.c \
-					srcs/get_next_line/get_next_line_utils.c \
+					srcs/get_next_line.c \
+					srcs/get_next_line_utils.c \
 					srcs/rotate_camera.c \
 					srcs/bmp_file.c \
 					srcs/error_and_exit.c \

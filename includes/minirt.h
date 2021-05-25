@@ -25,7 +25,7 @@
 #include "all.h"
 #include "view_screen.h"
 #include "error_and_exit.h"
-#include "../srcs/get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
 /*ray tracing*/
 void	ray_tracing(t_data *data, t_sc *sc);
