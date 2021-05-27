@@ -51,7 +51,7 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	t_pl	*close_pl = NULL;
 	t_pl	*tmp;
 	double	dist_pl;
-	double	c_pl = 1000000;
+	double	c_pl = 100000;
 	tmp = sc->pl;
 	while (tmp != NULL)
 	{
