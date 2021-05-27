@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_cam 	*cam_default(t_vec *pos, t_vec *direction, float fov)
+t_cam 	*cam_default(t_vec *pos, t_vec *direction, double fov)
 {
 	t_cam	*cam;
 
@@ -14,7 +14,7 @@ t_cam 	*cam_default(t_vec *pos, t_vec *direction, float fov)
 	return (cam);
 }
 
-void 	cam_list(t_cam **cam_list, t_vec *pos, t_vec *direction, float fov)
+void 	cam_list(t_cam **cam_list, t_vec *pos, t_vec *direction, double fov)
 {
 	t_cam	*new_cam;
 

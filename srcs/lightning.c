@@ -2,11 +2,11 @@
 
 int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 {
-	float	i = 0;
+	double	i = 0;
 	t_a		*al = NULL;
 	t_l		*tmp_l;
 	t_vec	*light;
-	float	n_to_l;
+	double	n_to_l;
 	tmp_l = sc->l;
 	al = sc->a;
 	t_sp	*close_sp = NULL;

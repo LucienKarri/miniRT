@@ -3,12 +3,12 @@
 
 typedef struct	s_screen
 {
-	float width;
-	float hight;
-	float screen_x;
-	float screen_y;
+	double width;
+	double hight;
+	double screen_x;
+	double screen_y;
 }				t_screen;
 
-t_screen	*screen_default(float width, float hight, float fov);
+t_screen	*screen_default(double width, double hight, double fov);
 
 #endif

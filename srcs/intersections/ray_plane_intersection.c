@@ -1,9 +1,9 @@
 #include "../includes/minirt.h"
 
-float	pl_intersection(t_vec *pos, t_vec *ray, t_pl *pl)
+double	pl_intersection(t_vec *pos, t_vec *ray, t_pl *pl)
 {
-	float den;
-	float t;
+	double den;
+	double t;
 	t_vec	*cam_to_pl;
 	
 	pl->nrmd = vec_sum(pl->crd, pl->nrmd);

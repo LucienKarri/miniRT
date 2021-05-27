@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_vec	*vec_default(float x, float y, float z)
+t_vec	*vec_default(double x, double y, double z)
 {
 	t_vec	*vec;
 	vec = malloc(sizeof(t_vec));
@@ -10,9 +10,9 @@ t_vec	*vec_default(float x, float y, float z)
 	return (vec);
 }
 
-float	vec_length(t_vec *vec)
+double	vec_length(t_vec *vec)
 {
-	float	res;
+	double	res;
 
 	res = sqrt((vec->x * vec->x) + (vec->y * vec->y) + (vec->z * vec->z));
 	return (res);
@@ -39,7 +39,7 @@ t_vec	*vec_cross(t_vec *vec1, t_vec *vec2)
 
 void	vec_normalize(t_vec *vec)
 {
-	float	len;
+	double	len;
 
 	len = vec_length(vec);
 	vec->x /= len;
@@ -47,9 +47,9 @@ void	vec_normalize(t_vec *vec)
 	vec->z /= len;
 }
 
-float	vec_dot_product(t_vec *vec1, t_vec *vec2)
+double	vec_dot_product(t_vec *vec1, t_vec *vec2)
 {
-	float 	res;
+	double 	res;
 
 	res = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
 	return (res);
@@ -66,7 +66,7 @@ t_vec	*vec_sum(t_vec *vec1, t_vec *vec2)
 	return (res);
 }
 
-t_vec	*vec_multiplication(t_vec *vec, float k)
+t_vec	*vec_multiplication(t_vec *vec, double k)
 {
 	t_vec	*res;
 

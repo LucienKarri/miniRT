@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_l	*l_default(t_vec *v_point, float ratio, int color)
+t_l	*l_default(t_vec *v_point, double ratio, int color)
 {
 	t_l	*l;
 
@@ -14,7 +14,7 @@ t_l	*l_default(t_vec *v_point, float ratio, int color)
 	return (l);
 }
 
-void	l_list(t_l **l_list, t_vec *v_point, float ratio, int color)
+void	l_list(t_l **l_list, t_vec *v_point, double ratio, int color)
 {
 	t_l	*new_l;
 

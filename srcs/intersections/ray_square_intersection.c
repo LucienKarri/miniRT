@@ -1,18 +1,18 @@
 #include "../includes/minirt.h"
 
-float	sq_intersection(t_vec *pos, t_vec *ray, t_sq *sq)
+double	sq_intersection(t_vec *pos, t_vec *ray, t_sq *sq)
 {
-	float den;
-	float t;
+	double den;
+	double t;
 	t_vec	*cam_to_sq;
 	t_vec	*hit;
 	t_vec	*dir;
 	t_vec	*right;
 	t_vec	*up;
 	t_vec	*hit_center;
-	float	hc;
-	float	ca;
-	float	a;
+	double	hc;
+	double	ca;
+	double	a;
 
 	den = vec_dot_product(sq->nrmd, ray);
 	if (den > 0.000001)

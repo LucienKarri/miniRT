@@ -29,11 +29,11 @@ int	ft_atoi(char *str, int *number)
 	return (i);
 }
 
-int	ft_ato_float(char *str, float *number)
+int	ft_ato_float(char *str, double *number)
 {
 	int		i;
 	int		num;
-	float	zero_point;
+	double	zero_point;
 
 	if ((i = ft_atoi(str, &num)) < 0)
 		return (-1);
@@ -57,7 +57,7 @@ int	ft_ato_vec(char *str, t_vec **vec)
 	int		i;
 	int		xyz;
 	int		writed;
-	float	v[3];
+	double	v[3];
 
 	i = 0;
 	xyz = 0;

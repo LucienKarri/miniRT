@@ -10,7 +10,7 @@ typedef struct	s_color
 }				t_color;
 
 int	creat_color(int r, int g, int b);
-int light_color(int light, int trgb, float intensive);
+int light_color(int light, int trgb, double intensive);
 int	sum_color(int trgb1, int light);
 
 #endif

@@ -37,7 +37,7 @@ t_vec	*look_at(t_cam *cam, t_vec *ray)
 	t_vec	*right;
 	t_vec	*up;
 	t_vec	*result;
-	float	a[3][3];
+	double	a[3][3];
 
 	dir = cam_dir(cam);
 	right = cam_right(dir);

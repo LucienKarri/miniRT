@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_a	*a_default(float ratio, int color)
+t_a	*a_default(double ratio, int color)
 {
 	t_a	*new_a;
 

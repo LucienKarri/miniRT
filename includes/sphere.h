@@ -4,14 +4,14 @@
 typedef struct	s_sp
 {
 	t_vec		*center;
-	float		radius;
+	double		radius;
 	int			color;
-	float		distance;
+	double		distance;
 	struct s_sp	*next;
 }				t_sp;
 
-t_sp 	*sp_default(t_vec *center, float diameter, int color);
-void 	sp_list(t_sp **sp_list, t_vec *center, float diameter, int color);
-float	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, float min, float max);
+t_sp 	*sp_default(t_vec *center, double diameter, int color);
+void 	sp_list(t_sp **sp_list, t_vec *center, double diameter, int color);
+double	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, double min, double max);
 
 #endif

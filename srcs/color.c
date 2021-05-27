@@ -5,7 +5,7 @@ int	creat_color(int r, int g, int b)
 	return (r << 16 | g << 8 | b << 0);
 }
 
-int light_color(int light, int trgb, float intensive)
+int light_color(int light, int trgb, double intensive)
 {
 	int	r = ((trgb & (0xFF << 16)) >> 16);
 	int	g = ((trgb & (0xFF << 8)) >> 8);

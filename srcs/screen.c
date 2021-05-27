@@ -1,9 +1,9 @@
 #include "../includes/minirt.h"
 
-t_screen	*screen_default(float width, float hight, float fov)
+t_screen	*screen_default(double width, double hight, double fov)
 {
 	t_screen	*screen;
-	float		ratio;
+	double		ratio;
 
 	screen = malloc(sizeof(t_screen));
 	ratio = width / hight;

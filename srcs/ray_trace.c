@@ -3,13 +3,13 @@
 int		ft_intersection(t_sc *scene, t_vec *ray)
 {
 	t_sp	*close_sp = NULL;
-	float	c_sp = 100000;
+	double	c_sp = 100000;
 	t_tr	*close_tr = NULL;
-	float	c_tr = 100000;
+	double	c_tr = 100000;
 	t_pl	*close_pl = NULL;
-	float	c_pl = 100000;
+	double	c_pl = 100000;
 	int 	close_color = 0;
-	float	tmp = 100000;
+	double	tmp = 100000;
 	t_vec	*p;
 	t_vec	*nrmd;
 	t_vec	*cam_to;
@@ -80,12 +80,12 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 
 void	ray_tracing(t_data *data, t_sc *sc)
 {
-	float		mlx_x;
-	float		mlx_y = 0;
-	float		resolution_x;
-	float		resolution_y;
-	float		ray_x;
-	float		ray_y;
+	double		mlx_x;
+	double		mlx_y = 0;
+	double		resolution_x;
+	double		resolution_y;
+	double		ray_x;
+	double		ray_y;
 	t_vec		*ray;
 	t_screen	*scr;
 	int			color;

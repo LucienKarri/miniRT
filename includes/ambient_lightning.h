@@ -3,10 +3,10 @@
 
 typedef struct	s_a
 {
-	float	ratio;
+	double	ratio;
 	int		color;
 }				t_a;
 
-t_a	*a_default(float ratio, int color);
+t_a	*a_default(double ratio, int color);
 
 #endif

@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_sq	*sq_default(t_vec *center, t_vec *nrmd, float side, int color)
+t_sq	*sq_default(t_vec *center, t_vec *nrmd, double side, int color)
 {
 	t_sq	*sq;
 
@@ -16,7 +16,7 @@ t_sq	*sq_default(t_vec *center, t_vec *nrmd, float side, int color)
 	return (sq);
 }
 
-void	sq_list(t_sq **sq_list, t_vec *center, t_vec *nrmd, float side, int
+void	sq_list(t_sq **sq_list, t_vec *center, t_vec *nrmd, double side, int
 color)
 {
 	t_sq	*new_sq;

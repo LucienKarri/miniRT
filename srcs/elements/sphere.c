@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_sp 	*sp_default(t_vec *center, float diameter, int color)
+t_sp 	*sp_default(t_vec *center, double diameter, int color)
 {
 	t_sp	*sp;
 
@@ -15,7 +15,7 @@ t_sp 	*sp_default(t_vec *center, float diameter, int color)
 	return (sp);
 }
 
-void 	sp_list(t_sp **sp_list, t_vec *center, float diameter, int color)
+void 	sp_list(t_sp **sp_list, t_vec *center, double diameter, int color)
 {
 	t_sp	*new_sp;
 

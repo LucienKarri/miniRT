@@ -1,11 +1,11 @@
 #include "../includes/minirt.h"
 
-t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, float min, float max)
+t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, double min, double max)
 {
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
-	float 	dist_sp;
-	float	c_sp = 100000;
+	double 	dist_sp;
+	double	c_sp = 100000;
 	tmp_sp = sc->sp;
 	while (tmp_sp != NULL)
 	{
@@ -27,8 +27,8 @@ t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc)
 {
 	t_tr	*tmp_tr;
 	t_tr	*close_tr = NULL;
-	float	dist_tr;
-	float	c_tr = 100000;
+	double	dist_tr;
+	double	c_tr = 100000;
 	tmp_tr = sc->tr;
 	while (tmp_tr != NULL)
 	{
@@ -50,8 +50,8 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 {
 	t_pl	*close_pl = NULL;
 	t_pl	*tmp;
-	float	dist_pl;
-	float	c_pl = 1000000;
+	double	dist_pl;
+	double	c_pl = 1000000;
 	tmp = sc->pl;
 	while (tmp != NULL)
 	{

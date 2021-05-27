@@ -5,7 +5,7 @@ int	parsing_sphere(t_sc *scene, char *line)
 	int		i;
 	int		count;
 	int		color;
-	float	radius;
+	double	radius;
 	t_vec	*center;
 
 	i = 2;
@@ -62,7 +62,7 @@ int	parsing_cam(t_sc *scene, char *line)
 	int		count;
 	t_vec	*pos;
 	t_vec	*dir;
-	float	fov;
+	double	fov;
 
 	i = 1;
 	count = 0;
@@ -93,7 +93,7 @@ int	parsing_light(t_sc *scene, char *line)
 	int		i;
 	int		count;
 	int		color;
-	float	ratio;
+	double	ratio;
 	t_vec	*pos;
 
 	i = 1;
@@ -125,7 +125,7 @@ int	parsing_ambient_light(t_sc *scene, char *line)
 	int		i;
 	int		count;
 	int		color;
-	float	ratio;
+	double	ratio;
 	t_a		*ambient;
 
 	i = 1;

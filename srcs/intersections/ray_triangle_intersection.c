@@ -1,17 +1,17 @@
 #include "../includes/minirt.h"
 
-float tr_crossing(t_vec *pos, t_vec *ray, t_tr *tr)
+double	tr_crossing(t_vec *pos, t_vec *ray, t_tr *tr)
 {
 	t_vec	*edge1;
 	t_vec	*edge2;
 	t_vec	*pvec;
 	t_vec	*tvec;
 	t_vec	*qvec;
-	float	inv_det;
-	float	det;
-	float	u;
-	float	v;
-	float	dist;
+	double	inv_det;
+	double	det;
+	double	u;
+	double	v;
+	double	dist;
 
 	dist = 0;
 	edge1 = vec_subtract(tr->p2, tr->p1);
