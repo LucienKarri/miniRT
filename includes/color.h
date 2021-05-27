@@ -10,7 +10,7 @@ typedef struct	s_color
 }				t_color;
 
 int	creat_color(int r, int g, int b);
-int mul_color(int trgb, float k);
-int	color_mixer(int trgb1, int trgb2);
+int light_color(int light, int trgb, float intensive);
+int	sum_color(int trgb1, int light);
 
 #endif

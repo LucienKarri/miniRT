@@ -156,9 +156,7 @@ int	parsing_triangle(t_sc *scene, char *line)
 	int		i;
 	int		count;
 	int		color;
-	t_vec	*first;
-	t_vec	*second;
-	t_vec	*third;
+	t_vec	*p[3];
 
 	i = 2;
 	count = 0;
@@ -171,28 +169,30 @@ int	parsing_triangle(t_sc *scene, char *line)
 		else
 		{
 			if (count == 1)
-				i += ft_ato_vec(&line[i], &first);
+				i += ft_ato_vec(&line[i], &p[0]);
 			if (count == 2)
-				i += ft_ato_vec(&line[i], &second);
+				i += ft_ato_vec(&line[i], &p[1]);
 			if (count == 3)
-				i += ft_ato_vec(&line[i], &third);
+				i += ft_ato_vec(&line[i], &p[2]);
 			if (count == 4)
 				i += ft_ato_col(&line[i], &color);
 		}
 	}
-	tr_list(&scene->tr, first, second, third, color);
+	tr_list(&scene->tr, p, color);
 	return (0);
 }
 
 int	parsing_plane(t_sc *scene, char *line)
 {
-	int		i = 2;
-	int		count = 0;
-	int 	color;
+	int		i;
+	int		count;
+	int		color;
 	t_vec	*pos;
 	t_vec	*nrmd;
 
-	while (count <= 3)
+	i = 2;
+	count = 0;
+	while (++count <= 3)
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
 			i++;
@@ -200,7 +200,6 @@ int	parsing_plane(t_sc *scene, char *line)
 			return (-1);
 		else
 		{
-			count++;
 			if (count == 1)
 				i += ft_ato_vec(&line[i], &pos);
 			if (count == 2)
@@ -209,6 +208,8 @@ int	parsing_plane(t_sc *scene, char *line)
 				i += ft_ato_col(&line[i], &color);
 		}
 	}
+	if (nrmd->x < -1 || nrmd->x > 1 || nrmd->y < -1 || nrmd->y > 1 || nrmd->z < -1 || nrmd->z > 1)
+		error_and_exit(-9);
 	pl_list(&scene->pl, pos, nrmd, color);
 	return (0);
 }

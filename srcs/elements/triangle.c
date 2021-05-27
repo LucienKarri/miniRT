@@ -16,11 +16,11 @@ t_tr 	*tr_default(t_vec *p1, t_vec *p2, t_vec *p3, int color)
 	return (tr);
 }
 
-void	tr_list(t_tr **tr_list, t_vec *p1, t_vec *p2, t_vec *p3, int color)
+void	tr_list(t_tr **tr_list, t_vec **p, int color)
 {
 	t_tr	*new_tr;
 
-	new_tr = tr_default(p1, p2, p3, color);
+	new_tr = tr_default(p[0], p[1], p[2], color);
 	new_tr->next = *tr_list;
 	*tr_list = new_tr;
 }

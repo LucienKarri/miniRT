@@ -28,7 +28,7 @@ SRCS			=	srcs/vector.c \
 					srcs/char_to.c \
 					srcs/get_next_line.c \
 					srcs/get_next_line_utils.c \
-					srcs/rotate_camera.c \
+					srcs/elements/rotate_camera.c \
 					srcs/bmp_file.c \
 					srcs/error_and_exit.c \
 					srcs/ft_strcmp.c \

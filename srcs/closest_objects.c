@@ -51,9 +51,8 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	t_pl	*close_pl = NULL;
 	t_pl	*tmp;
 	float	dist_pl;
-	float	c_pl = 100000;
+	float	c_pl = 1000000;
 	tmp = sc->pl;
-	int i = 1;
 	while (tmp != NULL)
 	{
 		dist_pl = pl_intersection(pos, ray, tmp);
@@ -63,7 +62,6 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 			close_pl = tmp;
 		}
 		tmp = tmp->next;
-		i++;
 	}
 	if (close_pl == NULL)
 		return (0);

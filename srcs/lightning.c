@@ -12,13 +12,10 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 	t_sp	*close_sp = NULL;
 	t_tr	*close_tr = NULL;
 	t_pl	*close_pl = NULL;
+	int	lightning = creat_color(0, 0, 0);
 
-	if (al != NULL)
-	{
-		i += al->ratio;
-		close_color = color_mixer(close_color, al->color);
-	}
-	int		close_color1 = close_color;
+	p = vec_sum(p, vec_multiplication(n, 0.00001));
+	lightning = light_color(lightning, al->color, al->ratio);
 	while (tmp_l != NULL)
 	{
 		light = vec_subtract(tmp_l->v_point, p);
@@ -30,15 +27,14 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 		{
 			n_to_l = vec_dot_product(n, light);
 			if (n_to_l > 0)
-				i += (tmp_l->ratio * n_to_l) / (vec_length(n) * vec_length
+			{
+				i = (tmp_l->ratio * n_to_l) / (vec_length(n) * vec_length
 						(light));
+				lightning = light_color(lightning, tmp_l->color, i);
+			}
 		}
-		close_color1 = color_mixer(close_color1, tmp_l->color);
 		tmp_l = tmp_l->next;
 	}
-	if (i > 1)
-		i = 1;
-	close_color = color_mixer(close_color, close_color1);
-	close_color = mul_color(close_color, i);
+	close_color = sum_color(close_color, lightning);
 	return (close_color);
 }

@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		mlx_key_hook(all->win, keys_control, all);
 		mlx_loop(all->mlx);
 	}
-	else if (argc == 3 && !(ft_strcmp(argv[2], "-save")))
+	else if (argc == 3 && !(ft_strcmp(argv[2], "--save")))
 		bmp_file(all);
 	else
 		error_and_exit(-7);

@@ -10,7 +10,7 @@ t_pl	*pl_default(t_vec *crd, t_vec *nrmd, int color)
 	pl->crd = crd;
 	pl->nrmd = nrmd;
 	pl->color = color;
-	pl->distance = 0;
+	pl->distance = 100000;
 	pl->next = NULL;
 	return (pl);
 }
