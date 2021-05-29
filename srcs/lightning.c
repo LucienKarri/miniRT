@@ -19,9 +19,11 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 	while (tmp_l != NULL)
 	{
 		light = vec_subtract(tmp_l->v_point, p);
-		close_sp = closing_sp(p, light, sc, 0.000001, 1);
+		close_sp = closing_sp(p, light, sc);
 		close_tr = closing_tr(p, light, sc);
 		close_pl = closing_pl(p, light, sc);
+		if (close_sp != NULL && (close_sp->distance > 1 || close_sp->distance < 0.000001))
+			close_sp = NULL;
 		if (close_pl != NULL && (close_pl->distance > 1 || close_pl->distance < 0.000001))
 			close_pl = NULL;
 		if (close_tr != NULL && close_tr->distance > 1)

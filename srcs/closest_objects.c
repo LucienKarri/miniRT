@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, double min, double max)
+t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc)
 {
 	t_sp	*tmp_sp;
 	t_sp	*close_sp = NULL;
@@ -9,7 +9,7 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, double min, double max)
 	tmp_sp = sc->sp;
 	while (tmp_sp != NULL)
 	{
-		dist_sp = sp_crossing(pos, ray, tmp_sp, min, max);
+		dist_sp = sp_crossing(pos, ray, tmp_sp);
 		if (dist_sp < c_sp && dist_sp != 0)
 		{
 			c_sp = dist_sp;
@@ -55,7 +55,7 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	tmp = sc->pl;
 	while (tmp != NULL)
 	{
-		dist_pl = pl_intersection(pos, ray, tmp);
+		dist_pl = pl_intersection(pos, ray, tmp->nrmd, tmp->crd);
 		if (dist_pl < c_pl && dist_pl != 0)
 		{
 			c_pl = dist_pl;

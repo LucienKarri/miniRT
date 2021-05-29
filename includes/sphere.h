@@ -12,6 +12,6 @@ typedef struct	s_sp
 
 t_sp 	*sp_default(t_vec *center, double diameter, int color);
 void 	sp_list(t_sp **sp_list, t_vec *center, double diameter, int color);
-double	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, double min, double max);
+double	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp);
 
 #endif

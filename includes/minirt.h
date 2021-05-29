@@ -32,7 +32,7 @@ void	ray_tracing(t_data *data, t_sc *sc);
 
 int		lightning(t_vec *p, t_vec *n, t_sc *sc, int color);
 
-t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc, double min, double max);
+t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc);
 t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc);
 t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc);
 

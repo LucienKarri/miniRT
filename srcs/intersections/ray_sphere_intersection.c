@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-double 	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, double min, double max)
+double 	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp)
 {
 	double a;
 	double b;
@@ -19,11 +19,11 @@ double 	sp_crossing(t_vec *pos, t_vec *ray, t_sp *sp, double min, double max)
 	free(cam_to_sp);
 	if (discr < 0)
 		return (0);
-	dist_front = ((b * (-1)) + sqrt(discr)) / 2 * a;
-	dist_back = ((b * (-1)) - sqrt(discr)) / 2 * a;
-	if ((dist_front > min && dist_front < max)  && dist_front < dist)
+	dist_front = ((b * (-1)) + sqrt(discr)) / (2 * a);
+	dist_back = ((b * (-1)) - sqrt(discr)) / (2 * a);
+	if (dist_front > 0 && dist_front < dist)
 		dist = dist_front;
-	if ((dist_back > min && dist_back < max) && dist_back < dist)
+	if (dist_back > 0 && dist_back < dist)
 		dist = dist_back;
 	return (dist);
 }
