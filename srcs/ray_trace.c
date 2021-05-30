@@ -10,6 +10,8 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 	double	c_pl = 100000;
 	t_sq	*close_sq = NULL;
 	double	c_sq = 100000;
+	t_cy	*close_cy = NULL;
+	double	c_cy = 100000;
 	int 	close_color = 0;
 	double	tmp = 100000;
 	t_vec	*p;
@@ -22,7 +24,10 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 	close_tr = closing_tr(scene->cam->pos, ray, scene);
 	close_pl = closing_pl(scene->cam->pos, ray, scene);
 	close_sq = closing_sq(scene->cam->pos, ray, scene);
-	if (close_tr == NULL && close_sp == NULL && close_pl == NULL && close_sq == NULL)
+	close_cy = closing_cy(scene->cam->pos, ray, scene);
+//	if (close_cy != NULL)
+//		printf("%f, %f, %f; %f\n", close_cy->origin->x, close_cy->origin->y, close_cy->origin->z, close_cy->distance);
+	if (close_tr == NULL && close_sp == NULL && close_pl == NULL && close_sq == NULL && close_cy == NULL)
 		return (0);
 	else
 	{
@@ -34,6 +39,8 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 			c_pl = close_pl->distance;
 		if (close_sq != NULL)
 			c_sq = close_sq->distance;
+		if (close_cy != NULL)
+			c_cy = close_cy->distance;
 		if (c_sp < tmp)
 			tmp = c_sp;
 		if (c_tr < tmp)
@@ -42,7 +49,18 @@ int		ft_intersection(t_sc *scene, t_vec *ray)
 			tmp = c_pl;
 		if (c_sq < tmp)
 			tmp = c_sq;
+		if (c_cy < tmp)
+			tmp = c_cy;
 		p = vec_sum(scene->cam->pos, vec_multiplication(ray, tmp));
+		if (tmp == c_cy && close_cy != NULL)
+		{
+			nrmd = close_cy->li;
+			cam_to = vec_subtract(ray, scene->cam->pos);
+			if (vec_dot_product(cam_to, nrmd) > 0)
+				nrmd = vec_multiplication(nrmd, -1);
+			vec_normalize(nrmd);
+			close_color = close_cy->color;
+		}
 		if (tmp == c_sp && close_sp != NULL)
 		{
 			nrmd = vec_subtract(p, close_sp->center);

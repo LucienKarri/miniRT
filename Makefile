@@ -14,6 +14,7 @@ SRCS			=	srcs/vector.c \
 					srcs/elements/plane.c \
 					srcs/elements/square.c \
 					srcs/elements/light.c \
+					srcs/elements/cylinder.c \
 					srcs/lightning.c \
 					srcs/elements/ambient_lightning.c \
 					srcs/color.c \
@@ -21,6 +22,7 @@ SRCS			=	srcs/vector.c \
 					srcs/intersections/ray_triangle_intersection.c \
 					srcs/intersections/ray_plane_intersection.c \
 					srcs/intersections/ray_square_intersection.c \
+					srcs/intersections/ray_cylinder_intersection.c \
 					srcs/closest_objects.c \
 					srcs/keys.c \
 					srcs/all.c \

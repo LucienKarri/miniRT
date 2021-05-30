@@ -91,3 +91,26 @@ t_sq	*closing_sq(t_vec *pos, t_vec *ray, t_sc *sc)
 	close_sq->distance = c_sq;
 	return (close_sq);
 }
+
+t_cy	*closing_cy(t_vec *pos, t_vec *ray, t_sc *sc)
+{
+	t_cy	*close_cy = NULL;
+	t_cy	*tmp;
+	double	dist_cy;
+	double	c_cy = 100000;
+	tmp = sc->cy;
+	while (tmp != NULL)
+	{
+		dist_cy = cylinder_intersection(pos, ray, tmp);
+		if (dist_cy < c_cy && dist_cy != 0)
+		{
+			c_cy = dist_cy;
+			close_cy = tmp;
+		}
+		tmp = tmp->next;
+	}
+	if (close_cy == NULL)
+		return (0);
+	close_cy->distance = c_cy;
+	return (close_cy);
+}

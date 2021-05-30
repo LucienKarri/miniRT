@@ -16,6 +16,7 @@
 #include "vector.h"
 #include "camera.h"
 #include "sphere.h"
+#include "cylinder.h"
 #include "triangle.h"
 #include "plane.h"
 #include "square.h"
@@ -36,6 +37,7 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc);
 t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc);
 t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc);
 t_sq	*closing_sq(t_vec *pos, t_vec *ray, t_sc *sc);
+t_cy	*closing_cy(t_vec *pos, t_vec *ray, t_sc *sc);
 
 int     ft_ato_col(char *str, int *color);
 int     ft_ato_vec(char *str, t_vec **vec);
@@ -53,6 +55,7 @@ int     parsing_ambient_light(t_sc *scene, char *line);
 int     parsing_triangle(t_sc *scene, char *line);
 int     parsing_plane(t_sc *scene, char *line);
 int     parsing_square(t_sc *scene, char *line);
+int     parsing_cylinder(t_sc *scene, char *line);
 
 void    bmp_file(t_all *all);
 void    bmp_info(t_all *all, int fd);

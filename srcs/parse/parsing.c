@@ -8,6 +8,8 @@ int	choise_element(t_sc *sc, char *line)
 			return (parsing_resolution(sc, line));
 		else if (line[0] == 'A')
 			return (parsing_ambient_light(sc, line));
+		else if (line[0] == 'c' && line[1] == 'y')
+			return (parsing_cylinder(sc, line));
 		else if (line[0] == 'c')
 			return (parsing_cam(sc, line));
 		else if (line[0] == 'l')

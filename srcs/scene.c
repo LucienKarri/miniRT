@@ -28,6 +28,7 @@ t_sc	*empty_scene(int color)
 	sc->l = NULL;
 	sc->a = NULL;
 	sc->sq = NULL;
+	sc->cy = NULL;
 	sc->width = color;
 	sc->hight = 0;
 	return (sc);

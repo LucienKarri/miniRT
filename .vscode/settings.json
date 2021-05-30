@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "minirt.h": "c"
+        "minirt.h": "c",
+        "mlx.h": "c",
+        "triangle.h": "c"
     }
 }
