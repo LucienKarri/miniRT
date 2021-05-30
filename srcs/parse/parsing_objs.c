@@ -213,3 +213,38 @@ int	parsing_plane(t_sc *scene, char *line)
 	pl_list(&scene->pl, pos, nrmd, color);
 	return (0);
 }
+
+int	parsing_square(t_sc *scene, char *line)
+{
+	int		i;
+	int		count;
+	int		color;
+	double	side;
+	t_vec	*pos;
+	t_vec	*nrmd;
+
+	i = 2;
+	count = 0;
+	while (++count <= 4)
+	{
+		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
+			i++;
+		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+			return (-1);
+		else
+		{
+			if (count == 1)
+				i += ft_ato_vec(&line[i], &pos);
+			if (count == 2)
+				i += ft_ato_vec(&line[i], &nrmd);
+			if (count == 3)
+				i += ft_ato_float(&line[i], &side);
+			if (count == 4)
+				i += ft_ato_col(&line[i], &color);
+		}
+	}
+	if (nrmd->x < -1 || nrmd->x > 1 || nrmd->y < -1 || nrmd->y > 1 || nrmd->z < -1 || nrmd->z > 1)
+		error_and_exit(-9);
+	sq_list(&scene->sq, pos, nrmd, side, color);
+	return (0);
+}

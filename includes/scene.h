@@ -9,6 +9,7 @@ typedef struct	s_sc
 	t_pl	*pl;
 	t_l		*l;
 	t_a		*a;
+	t_sq	*sq;
 	int		width;
 	int		hight;
 }				t_sc;

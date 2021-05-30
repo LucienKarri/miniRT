@@ -20,6 +20,7 @@ SRCS			=	srcs/vector.c \
 					srcs/intersections/ray_sphere_intersection.c \
 					srcs/intersections/ray_triangle_intersection.c \
 					srcs/intersections/ray_plane_intersection.c \
+					srcs/intersections/ray_square_intersection.c \
 					srcs/closest_objects.c \
 					srcs/keys.c \
 					srcs/all.c \

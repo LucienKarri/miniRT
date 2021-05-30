@@ -18,6 +18,8 @@ int	choise_element(t_sc *sc, char *line)
 			return (parsing_triangle(sc, line));
 		else if (line[0] == 'p' && line[1] == 'l')
 			return (parsing_plane(sc, line));
+		else if (line[0] == 's' && line[1] == 'q')
+			return (parsing_square(sc, line));
 		else
 			return (-1);
 	}

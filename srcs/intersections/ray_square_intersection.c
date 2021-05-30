@@ -2,34 +2,22 @@
 
 double	sq_intersection(t_vec *pos, t_vec *ray, t_sq *sq)
 {
-	double den;
-	double t;
+	double	dist;
+	double	vcos;
+	double	max;
+	t_vec	*point;
+	t_vec	*s;
 	t_vec	*cam_to_sq;
-	t_vec	*hit;
-	t_vec	*dir;
-	t_vec	*right;
-	t_vec	*up;
-	t_vec	*hit_center;
-	double	hc;
-	double	ca;
-	double	a;
 
-	den = vec_dot_product(sq->nrmd, ray);
-	if (den > 0.000001)
-	{
-		cam_to_sq = vec_subtract(sq->center, pos);
-		t = vec_dot_product(cam_to_sq, sq->nrmd) / den;
-		if (t >= 0)
-		{
-			hit = vec_multiplication(ray, t);
-			dir = vec_subtract(sq->nrmd, sq->center);
-			right = cam_right(dir);
-			up = cam_up(right, dir);
-			hit_center = vec_subtract(hit, sq->center);
-			ca = vec_dot_product(hit_center, right) / vec_length(hit_center) / vec_length (right);
-			a = acos(ca);
-			
-		}
-	}
+	dist = pl_intersection(pos, ray, sq->nrmd, sq->center);
+	point = vec_sum(pos, vec_multiplication(ray, dist));
+	s = cam_right(sq->nrmd);
+	cam_to_sq = vec_subtract(point, sq->center);
+	vcos = fabs(vec_dot_product(s, cam_to_sq) / (vec_length(s) * vec_length(cam_to_sq)));
+	if (vcos < sqrt(2) / 2)
+		vcos = cos(M_PI_2 - acos(vcos));
+	max = (sq->side / 2) / vcos;
+	if (sqrt(vec_dot_product(cam_to_sq, cam_to_sq)) <= max)
+		return (dist);
 	return (0);
 }

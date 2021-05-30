@@ -68,3 +68,26 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	close_pl->distance = c_pl;
 	return (close_pl);
 }
+
+t_sq	*closing_sq(t_vec *pos, t_vec *ray, t_sc *sc)
+{
+	t_sq	*close_sq = NULL;
+	t_sq	*tmp;
+	double	dist_sq;
+	double	c_sq = 100000;
+	tmp = sc->sq;
+	while (tmp != NULL)
+	{
+		dist_sq = sq_intersection(pos, ray, tmp);
+		if (dist_sq < c_sq && dist_sq != 0)
+		{
+			c_sq = dist_sq;
+			close_sq = tmp;
+		}
+		tmp = tmp->next;
+	}
+	if (close_sq == NULL)
+		return (0);
+	close_sq->distance = c_sq;
+	return (close_sq);
+}
