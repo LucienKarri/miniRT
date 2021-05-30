@@ -1,7 +1,7 @@
 #ifndef ALL_H
 # define ALL_H
 
-typedef struct	s_all
+typedef struct s_all
 {
 	t_sc	*sc;
 	t_data	*data;

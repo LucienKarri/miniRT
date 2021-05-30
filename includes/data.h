@@ -1,7 +1,7 @@
 #ifndef DATA_H
 # define DATA_H
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
