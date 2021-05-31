@@ -30,6 +30,7 @@ SRCS			=	srcs/vector.c \
 					srcs/all.c \
 					srcs/parse/parsing.c \
 					srcs/parse/parsing_objs.c \
+					srcs/parse/parsing_elems.c \
 					srcs/char_to.c \
 					srcs/get_next_line.c \
 					srcs/get_next_line_utils.c \

@@ -12,8 +12,8 @@ t_all	*all_default(t_sc *sc, t_data *img)
 	new->mlx = mlx_init();
 	new->win = NULL;
 	img->img = mlx_new_image(new->mlx, new->sc->width, new->sc->hight);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->b_p_p,
+			&img->line_len, &img->endian);
 	new->data = img;
 	return (new);
 }

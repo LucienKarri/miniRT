@@ -9,8 +9,7 @@ int	cy_crossing(t_vec *pos, t_vec *ray, t_cy *cy, double t[2])
 
 	v = vec_multiplication(cy->nrmd, vec_dot_product(ray, cy->nrmd));
 	v = vec_subtract(ray, v);
-	u = vec_multiplication(cy->nrmd,
-			vec_dot_product(vec_subtract(pos, cy->origin), cy->nrmd));
+	u = vec_multiplication(cy->nrmd, vec_dot_product(vec_subtract(pos, cy->origin), cy->nrmd));
 	u = vec_subtract(vec_subtract(pos, cy->origin), u);
 	k[0] = vec_dot_product(v, v);
 	k[1] = 2 * vec_dot_product(v, u);
@@ -25,11 +24,13 @@ int	cy_crossing(t_vec *pos, t_vec *ray, t_cy *cy, double t[2])
 	return (1);
 }
 
-int	sub_n(t_cy *cy, double t[2], double dist, double k)
+t_vec	*cy_norm(t_vec *pos, t_vec *ray, t_cy *cy, double t[2])
 {
-	if ((cy->distance1 >= 0 && cy->distance1
-			<= cy->height && t[0] > 0) && (cy->distance2 >= 0
-			&& cy->distance2 <= cy->height && t[1] > 0))
+	double	dist;
+	double	k;
+	t_vec	*n;
+
+	if ((cy->distance1 >= 0 && cy->distance1 <= cy->height && t[0] > 0) && (cy->distance2 >= 0 && cy->distance2 <= cy->height && t[1] > 0))
 	{
 		if (t[0] < t[1])
 		{
@@ -41,34 +42,19 @@ int	sub_n(t_cy *cy, double t[2], double dist, double k)
 			dist = cy->distance2;
 			k = t[1];
 		}
-		return (1);
 	}
-	return (0);
-}
-
-t_vec	*cy_norm(t_vec *pos, t_vec *ray, t_cy *cy, double t[2])
-{
-	double	dist;
-	double	k;
-	t_vec	*n;
-
-	if (sub_n(cy, t, dist, k) == 0)
+	else if (cy->distance1 >= 0 && cy->distance1 <= cy->height && t[0] > 0)
 	{
-		if (cy->distance1 >= 0 && cy->distance1 <= cy->height && t[0] > 0)
-		{
-			dist = cy->distance1;
-			k = t[0];
-		}
-		else
-		{
-			dist = cy->distance2;
-			k = t[1];
-		}
+		dist = cy->distance1;
+		k = t[0];
+	}
+	else
+	{
+		dist = cy->distance2;
+		k = t[1];
 	}
 	t[0] = k;
-	n = vec_subtract(vec_subtract(vec_multiplication(ray, k),
-				vec_multiplication(cy->nrmd, dist)),
-			vec_subtract(cy->origin, pos));
+	n = vec_subtract(vec_subtract(vec_multiplication(ray, k), vec_multiplication(cy->nrmd, dist)), vec_subtract(cy->origin, pos));
 	vec_normalize(n);
 	return (n);
 }
@@ -79,15 +65,9 @@ double	cy_intersect(t_vec *pos, t_vec *ray, t_cy *cy)
 
 	if (cy_crossing(pos, ray, cy, t) == 0)
 		return (0);
-	cy->distance1 = vec_dot_product(cy->nrmd,
-			vec_subtract(vec_multiplication(ray, t[0]),
-				vec_subtract(cy->origin, pos)));
-	cy->distance2 = vec_dot_product(cy->nrmd,
-			vec_subtract(vec_multiplication(ray, t[1]),
-				vec_subtract(cy->origin, pos)));
-	if (!((cy->distance1 >= 0 && cy->distance1 <= cy->height
-				&& t[0] > 0 ) || (cy->distance2 >= 0
-				&& cy->distance2 <= cy->height && t[0] > 0)))
+	cy->distance1 = vec_dot_product(cy->nrmd, vec_subtract(vec_multiplication(ray, t[0]), vec_subtract(cy->origin, pos)));
+	cy->distance2 = vec_dot_product(cy->nrmd, vec_subtract(vec_multiplication(ray, t[1]), vec_subtract(cy->origin, pos)));
+	if (!((cy->distance1 >= 0 && cy->distance1 <= cy->height && t[0] > 0 ) || (cy->distance2 >= 0 && cy->distance2 <= cy->height && t[0] > 0)))
 		return (0);
 	cy->li = cy_norm(pos, ray, cy, t);
 	return (t[0]);

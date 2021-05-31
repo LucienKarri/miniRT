@@ -102,9 +102,9 @@ int	parsing_square(t_sc *scene, char *line)
 		if (k[1] == 3)
 			k[0] += ft_ato_float(&line[k[0]], &side);
 		if (k[1] == 4)
-			k[0] += ft_ato_col(&line[k[0]], &k[3]);
+			k[0] += ft_ato_col(&line[k[0]], &k[2]);
 	}
-	sq_list(&scene->sq, v, side, k[3]);
+	sq_list(&scene->sq, v, side, k[2]);
 	return (0);
 }
 
@@ -131,8 +131,8 @@ int	parsing_cylinder(t_sc *scene, char *line)
 		if (k[1] == 4)
 			k[0] += ft_ato_float(&line[k[0]], &t[1]);
 		if (k[1] == 5)
-			k[0] += ft_ato_col(&line[k[0]], &k[3]);
+			k[0] += ft_ato_col(&line[k[0]], &k[2]);
 	}
-	cy_list(&scene->cy, v, t, k[3]);
+	cy_list(&scene->cy, v, t, k[2]);
 	return (0);
 }

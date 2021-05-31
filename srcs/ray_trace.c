@@ -61,7 +61,7 @@ void	n_inter(t_inter *inter, t_vec *ray, t_vec *pos)
 	if (inter->pl != NULL && inter->dist == inter->pl->distance)
 		inter->n = inter->pl->nrmd;
 	if (inter->sp != NULL && inter->dist == inter->sp->distance)
-		inter->n = vec_subtract(ray, inter->sp->center);
+		inter->n = vec_subtract(vec_sum(pos, vec_multiplication(ray, inter->dist)), inter->sp->center);
 	if (vec_dot_product(cam_to, inter->n) > 0)
 		inter->n = vec_multiplication(inter->n, -1);
 	vec_normalize(inter->n);
