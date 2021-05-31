@@ -7,6 +7,8 @@ int	parsing_resolution(t_sc *scene, char *line)
 
 	i = 1;
 	count = 0;
+	if (scene->width > 0 || scene->hight > 0)
+		error_and_exit(-6);
 	while (++count <= 2)
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
@@ -92,6 +94,8 @@ int	parsing_ambient_light(t_sc *scene, char *line)
 
 	i = 1;
 	count = 0;
+	if (scene->a != NULL)
+		error_and_exit(-6);
 	while (++count <= 2)
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))

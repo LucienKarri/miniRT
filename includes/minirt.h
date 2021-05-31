@@ -43,7 +43,7 @@ int		ft_ato_float(char *str, double *number);
 int		ft_atoi(char *str, int *number);
 
 int		keys_control(int keycode, t_all *all);
-int     close_program(int key, t_all *all);
+int     close_program(t_all *all);
 t_sc	*parsing(int fd);
 int		choise_element(t_sc *sc, char *line);
 int		parsing_sphere(t_sc *scene, char *line);

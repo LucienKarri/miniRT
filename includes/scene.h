@@ -15,6 +15,6 @@ typedef struct s_sc
 	int		hight;
 }				t_sc;
 
-t_sc	*empty_scene(int color);
+t_sc	*empty_scene(void);
 
 #endif

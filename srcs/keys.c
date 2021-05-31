@@ -14,10 +14,8 @@ int	keys_control(int keycode, t_all *all)
 	return (0);
 }
 
-int close_program(int key, t_all *all)
+int close_program(t_all *all)
 {
-    (void)key;
-
     mlx_destroy_window(all->mlx, all->win);
 	exit(0);
     return (0);

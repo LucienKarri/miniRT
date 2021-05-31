@@ -1,6 +1,6 @@
 #include "../includes/minirt.h"
 
-t_sc	*empty_scene(int color)
+t_sc	*empty_scene(void)
 {
 	t_sc	*sc;
 
@@ -15,7 +15,7 @@ t_sc	*empty_scene(int color)
 	sc->a = NULL;
 	sc->sq = NULL;
 	sc->cy = NULL;
-	sc->width = color;
-	sc->hight = 0;
+	sc->width = -1;
+	sc->hight = -1;
 	return (sc);
 }

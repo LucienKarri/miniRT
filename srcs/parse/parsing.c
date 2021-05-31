@@ -34,7 +34,7 @@ t_sc	*parsing(int fd)
 	char	*line;
 	int		rd;
 
-	new_scene = empty_scene(0);
+	new_scene = empty_scene();
 	rd = get_next_line(fd, &line);
 	while (rd > 0)
 	{

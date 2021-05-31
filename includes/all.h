@@ -7,6 +7,8 @@ typedef struct s_all
 	t_data	*data;
 	void	*mlx;
 	void	*win;
+    int     x;
+    int     y;
 }				t_all;
 
 t_all	*all_default(t_sc *sc, t_data *img);

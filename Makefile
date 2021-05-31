@@ -45,14 +45,14 @@ MLX				=	mlx_linux/*.a
 
 CC				=	gcc
 
-CFLAGS			=	-Wall  -Wextra -g
+CFLAGS			=	-Wall -Wextra -Werror -g
 
 LFLAGS			=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lbsd
 
 RM				=	rm -rf
 
 .c.o:
-				${CC} ${CFLAGS} -I ${INCLUDES} -Imlx_linux -O3 -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} -I ${INCLUDES} -Imlx_linux -c $< -o ${<:.c=.o}
 
 all:			${NAME}
 
