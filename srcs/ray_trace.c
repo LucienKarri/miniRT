@@ -50,14 +50,17 @@ void	n_inter(t_inter *inter, t_vec *ray, t_vec *pos)
 {
 	t_vec	*cam_to;
 
-	cam_to = vec_subtract(ray, pos);
+	cam_to = vec_subtract(vec_sum(pos, vec_multiplication(ray, inter->dist)), pos);
 	if (inter->cy != NULL && inter->dist == inter->cy->distance)
 		inter->n = inter->cy->li;
 	if (inter->tr != NULL && inter->dist == inter->tr->distance)
 		inter->n = vec_cross(vec_subtract(inter->tr->p2, inter->tr->p1),
 				   vec_subtract(inter->tr->p3, inter->tr->p1));
 	if (inter->sq != NULL && inter->dist == inter->sq->distance)
+    {
 		inter->n = inter->sq->nrmd;
+        cam_to = vec_subtract(ray, pos);
+    }
 	if (inter->pl != NULL && inter->dist == inter->pl->distance)
 		inter->n = inter->pl->nrmd;
 	if (inter->sp != NULL && inter->dist == inter->sp->distance)
