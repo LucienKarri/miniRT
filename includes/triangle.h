@@ -1,7 +1,7 @@
 #ifndef TRIANGLE_H
 # define TRIANGLE_H
 
-typedef struct	s_tr
+typedef struct s_tr
 {
 	t_vec		*p1;
 	t_vec		*p2;

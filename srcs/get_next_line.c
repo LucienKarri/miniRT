@@ -12,13 +12,13 @@
 
 #include "get_next_line.h"
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	static char *buf_s;
+	static char	*buf_s;
 	char		*rd_s;
 	int			fd_val;
 
-	fd_val = 1;
+    fd_val = 1;
 	if (fd < 0 || !line || 1 <= 0)
 		return (-1);
 	if (!(rd_s = (char *)malloc(sizeof(char) * (1 + 1))))
@@ -28,12 +28,9 @@ int		get_next_line(int fd, char **line)
 		rd_s[fd_val] = '\0';
 		buf_s = ft_strjoin(buf_s, rd_s);
 	}
-	if (fd_val == -1)
-	{
-		free(rd_s);
-		return (-1);
-	}
 	free(rd_s);
+	if (fd_val == -1)
+		return (-1);
 	*line = ft_strdup(buf_s);
 	buf_s = clean_s(buf_s);
 	if (fd_val == 0 && !buf_s)

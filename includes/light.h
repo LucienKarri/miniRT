@@ -1,7 +1,7 @@
 #ifndef LIGHT_H
 # define LIGHT_H
 
-typedef struct	s_l
+typedef struct s_l
 {
 	double		ratio;
 	t_vec		*v_point;

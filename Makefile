@@ -3,6 +3,7 @@ NAME			=	minirt
 INCLUDES		=	./includes/
 
 SRCS			=	srcs/vector.c \
+					srcs/vector1.c \
 					srcs/elements/camera.c \
 					srcs/scene.c \
 					srcs/data.c \
@@ -24,6 +25,7 @@ SRCS			=	srcs/vector.c \
 					srcs/intersections/ray_square_intersection.c \
 					srcs/intersections/ray_cylinder_intersection.c \
 					srcs/closest_objects.c \
+					srcs/close_inter.c \
 					srcs/keys.c \
 					srcs/all.c \
 					srcs/parse/parsing.c \

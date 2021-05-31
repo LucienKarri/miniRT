@@ -5,42 +5,49 @@ int	creat_color(int r, int g, int b)
 	return (r << 16 | g << 8 | b << 0);
 }
 
-int light_color(int light, int trgb, double intensive)
+int	light_color(int light, int trgb, double intensive)
 {
-	int	r = ((trgb & (0xFF << 16)) >> 16);
-	int	g = ((trgb & (0xFF << 8)) >> 8);
-	int	b = ((trgb & (0xFF << 0)) >> 0);
-	int	lr = ((light & (0xFF << 16)) >> 16);
-	int	lg = ((light & (0xFF << 8)) >> 8);
-	int	lb = ((light & (0xFF << 0)) >> 0);
-	lr += r * intensive;
-	lg += g * intensive;
-	lb += b * intensive;
-	if (lr > 255)
-		lr = 255;
-	if (lg > 255)
-		lg = 255;
-	if (lb > 255)
-		lb = 255;
-	return (lr << 16 | lg << 8 | lb << 0);
+	int	rgb[3];
+	int	lrgb[3];
+
+	rgb[0] = ((trgb & (0xFF << 16)) >> 16);
+	rgb[1] = ((trgb & (0xFF << 8)) >> 8);
+	rgb[2] = ((trgb & (0xFF << 0)) >> 0);
+	lrgb[0] = ((light & (0xFF << 16)) >> 16);
+	lrgb[1] = ((light & (0xFF << 8)) >> 8);
+	lrgb[2] = ((light & (0xFF << 0)) >> 0);
+	lrgb[0] += rgb[0] * intensive;
+	lrgb[1] += rgb[1] * intensive;
+	lrgb[2] += rgb[2] * intensive;
+	if (lrgb[0] > 255)
+		lrgb[0] = 255;
+	if (lrgb[1] > 255)
+		lrgb[1] = 255;
+	if (lrgb[2] > 255)
+		lrgb[2] = 255;
+	return (lrgb[0] << 16 | lrgb[1] << 8 | lrgb[2] << 0);
 }
 
 int	sum_color(int trgb1, int light)
 {
-	int	r1 = (trgb1 & (0xFF << 16)) >> 16;
-	int	g1 = (trgb1 & (0xFF << 8)) >> 8;
-	int	b1 = (trgb1 & (0xFF << 0)) >> 0;
-	int	lr = (light & (0xFF << 16)) >> 16;
-	int	lg = (light & (0xFF << 8)) >> 8;
-	int	lb = (light & (0xFF << 0)) >> 0;
-	int r = r1 * lr / 255;
-	int g = g1 * lg / 255;
-	int b = b1 * lb / 255;
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return (r << 16 | g << 8 | b << 0);
+	int	rgb1[3];
+	int	rgb[3];
+	int	lrgb[3];
+
+	rgb1[0] = (trgb1 & (0xFF << 16)) >> 16;
+	rgb1[1] = (trgb1 & (0xFF << 8)) >> 8;
+	rgb1[2] = (trgb1 & (0xFF << 0)) >> 0;
+	lrgb[0] = (light & (0xFF << 16)) >> 16;
+	lrgb[1] = (light & (0xFF << 8)) >> 8;
+	lrgb[2] = (light & (0xFF << 0)) >> 0;
+	rgb[0] = rgb1[0] * lrgb[0] / 255;
+	rgb[1] = rgb1[1] * lrgb[1] / 255;
+	rgb[2] = rgb1[2] * lrgb[2] / 255;
+	if (rgb[0] > 255)
+		rgb[0] = 255;
+	if (rgb[1] > 255)
+		rgb[1] = 255;
+	if (rgb[2] > 255)
+		rgb[2] = 255;
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2] << 0);
 }

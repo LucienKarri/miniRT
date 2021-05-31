@@ -1,7 +1,7 @@
 #ifndef PLANE_H
 # define PLANE_H
 
-typedef struct	s_pl
+typedef struct s_pl
 {
 	t_vec		*crd;
 	t_vec		*nrmd;

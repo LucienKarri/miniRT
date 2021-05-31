@@ -35,7 +35,8 @@ int	ft_ato_float(char *str, double *number)
 	int		num;
 	double	zero_point;
 
-	if ((i = ft_atoi(str, &num)) < 0)
+	i = ft_atoi(str, &num);
+	if (i < 0)
 		return (-1);
 	*number = num;
 	if (str[i] == '.')
@@ -63,7 +64,8 @@ int	ft_ato_vec(char *str, t_vec **vec)
 	xyz = 0;
 	while (xyz < 3)
 	{
-		if ((writed = ft_ato_float(&str[i], &v[xyz])) < 0)
+		writed = ft_ato_float(&str[i], &v[xyz]);
+		if (writed < 0)
 			return (-1);
 		i = i + writed;
 		if (xyz < 2 && str[i] != ',')
@@ -72,7 +74,8 @@ int	ft_ato_vec(char *str, t_vec **vec)
 			i++;
 		xyz++;
 	}
-	if (!(*vec = vec_default(v[0], v[1], v[2])))
+	*vec = vec_default(v[0], v[1], v[2]);
+	if (!*vec)
 		return (-1);
 	return (i);
 }
@@ -89,7 +92,8 @@ int	ft_ato_col(char *str, int *color)
 	writen = 0;
 	while (canal < 3)
 	{
-		if ((writen = ft_atoi(&str[i], &rgb[canal])) < 0)
+		writen = ft_atoi(&str[i], &rgb[canal]);
+		if (writen < 0)
 			return (-1);
 		if (rgb[canal] < 0 || rgb[canal] > 255)
 			return (-1);

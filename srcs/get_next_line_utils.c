@@ -40,7 +40,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (arr);
 }
 
-int		ft_strl(char *s)
+int	ft_strl(char *s)
 {
 	int	i;
 
@@ -52,9 +52,9 @@ int		ft_strl(char *s)
 	return (i);
 }
 
-int		search_nl(char *s)
+int	search_nl(char *s)
 {
-	int v;
+	int	v;
 
 	v = 0;
 	if (!s)

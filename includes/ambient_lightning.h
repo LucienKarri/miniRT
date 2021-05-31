@@ -1,7 +1,7 @@
 #ifndef AMBIENT_LIGHTNING_H
 # define AMBIENT_LIGHTNING_H
 
-typedef struct	s_a
+typedef struct s_a
 {
 	double	ratio;
 	int		color;
