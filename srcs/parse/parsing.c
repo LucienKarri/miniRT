@@ -45,6 +45,7 @@ t_sc	*parsing(int fd)
 		rd = get_next_line(fd, &line);
 	}
 	rd = choise_element(new_scene, line);
+	free(line);
 	if (rd < 0)
 		return (NULL);
 	return (new_scene);
