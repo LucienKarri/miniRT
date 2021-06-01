@@ -42,7 +42,7 @@ int	ft_ato_float(char *str, double *number)
 	if (str[i] == '.')
 		i++;
 	zero_point = 0.1;
-	if (num < 0)
+	if (str[0] == '-')
 		zero_point *= -1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{

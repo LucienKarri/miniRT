@@ -15,7 +15,7 @@ t_vec	*cam_right(t_vec *dir)
 	t_vec	*res;
 
 	if (dir->x == 0 && (dir->y == 1 || dir->y == -1) && dir->z == 0)
-		up = vec_default(0, 0, 1);
+		up = vec_default(1, 0, 0);
 	else
 		up = vec_default(0, 1, 0);
 	res = vec_cross(up, dir);
