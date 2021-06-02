@@ -67,6 +67,7 @@ void	n_inter(t_inter *inter, t_vec *ray, t_vec *pos)
 		inter->n = vec_subtract(vec_sum(pos, vec_multiplication(ray, inter->dist)), inter->sp->center);
 	if (vec_dot_product(cam_to, inter->n) > 0)
 		inter->n = vec_multiplication(inter->n, -1);
+	free(cam_to);
 	vec_normalize(inter->n);
 }
 
@@ -87,6 +88,8 @@ int	ft_intersection(t_sc *scene, t_vec *ray)
 		p = vec_sum(scene->cam->pos, vec_multiplication(ray, inter->dist));
 		close_color = lightning(p, inter->n, scene, inter->color);
 	}
+	free(inter);
+	free(p);
 	return (close_color);
 }
 
@@ -116,4 +119,5 @@ void	ray_tracing(t_data *data, t_sc *sc)
 		scr->res_y--;
 		scr->mlx_y++;
 	}
+	free(scr);
 }

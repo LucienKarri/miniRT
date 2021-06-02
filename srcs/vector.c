@@ -23,21 +23,12 @@ double	vec_length(t_vec *vec)
 
 t_vec	*vec_subtract(t_vec *vec1, t_vec *vec2)
 {
-	t_vec	*res;
-
-	res = vec_default(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
-	return (res);
+	return (vec_default(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z));
 }
 
 t_vec	*vec_cross(t_vec *vec1, t_vec *vec2)
 {
-	t_vec	*res;
-
-	res = vec_default(0, 0, 0);
-	res->x = vec1->y * vec2->z - vec1->z * vec2->y;
-	res->y = vec1->z * vec2->x - vec1->x * vec2->z;
-	res->z = vec1->x * vec2->y - vec1->y * vec2->x;
-	return (res);
+	return (vec_default(vec1->y * vec2->z - vec1->z * vec2->y, vec1->z * vec2->x - vec1->x * vec2->z, vec1->x * vec2->y - vec1->y * vec2->x));
 }
 
 void	vec_normalize(t_vec *vec)

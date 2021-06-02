@@ -2,30 +2,28 @@
 
 int	closest_obj(t_vec *p, t_vec *light, t_sc *sc)
 {
-	t_sp	*close_sp;
-	t_tr	*close_tr;
-	t_pl	*close_pl;
-	t_sq	*close_sq;
-	t_cy	*close_cy;
+    t_inter *inter;
 
-	close_sp = closing_sp(p, light, sc);
-	close_tr = closing_tr(p, light, sc);
-	close_pl = closing_pl(p, light, sc);
-	close_sq = closing_sq(p, light, sc);
-	close_cy = closing_cy(p, light, sc);
-	if (close_sp != NULL && (close_sp->distance > 1 || close_sp->distance < 0))
-		close_sp = NULL;
-	if (close_pl != NULL && (close_pl->distance > 1 || close_pl->distance < 0))
-		close_pl = NULL;
-	if (close_tr != NULL && (close_tr->distance > 1 || close_tr->distance < 0))
-		close_tr = NULL;
-	if (close_sq != NULL && (close_sq->distance > 1 || close_sq->distance < 0))
-		close_sq = NULL;
-	if (close_cy != NULL && (close_cy->distance > 1 || close_cy->distance < 0))
-		close_cy = NULL;
-	if (close_sp == NULL && close_tr == NULL && close_pl
-		== NULL && close_sq == NULL && close_cy == NULL)
+    inter = new_inter();
+	inter->sp = closing_sp(p, light, sc);
+	inter->tr = closing_tr(p, light, sc);
+	inter->pl = closing_pl(p, light, sc);
+	inter->sq = closing_sq(p, light, sc);
+	inter->cy = closing_cy(p, light, sc);
+	if (inter->sp != NULL && (inter->sp->distance > 1 || inter->sp->distance < 0))
+		inter->sp = NULL;
+	if (inter->pl != NULL && (inter->pl->distance > 1 || inter->pl->distance < 0))
+		inter->pl = NULL;
+	if (inter->tr != NULL && (inter->tr->distance > 1 || inter->tr->distance < 0))
+		inter->tr = NULL;
+	if (inter->sq != NULL && (inter->sq->distance > 1 || inter->sq->distance < 0))
+		inter->sq = NULL;
+	if (inter->cy != NULL && (inter->cy->distance > 1 || inter->cy->distance < 0))
+		inter->cy = NULL;
+	if (inter->sp == NULL && inter->tr == NULL && inter->pl
+		== NULL && inter->sq == NULL && inter->cy == NULL)
 		return (0);
+    free(inter);
 	return (1);
 }
 
@@ -51,9 +49,11 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 				i = tmp_l->ratio * n_to_l / (vec_length(n) * vec_length(light));
 				lightning = light_color(lightning, tmp_l->color, i);
 			}
+            free(light);
 		}
 		tmp_l = tmp_l->next;
 	}
 	close_color = sum_color(close_color, lightning);
+    free(tmp_l);
 	return (close_color);
 }
