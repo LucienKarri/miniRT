@@ -5,7 +5,7 @@ t_vec	*cam_dir(t_cam *cam)
 	t_vec	*res;
 
 	res = cam->direction;
-	vec_normalize(res);
+	vec_normalize(*res);
 	return (res);
 }
 
@@ -18,8 +18,9 @@ t_vec	*cam_right(t_vec *dir)
 		up = vec_default(1, 0, 0);
 	else
 		up = vec_default(0, 1, 0);
-	res = vec_cross(up, dir);
-	vec_normalize(res);
+	res = vec_cross(*up, *dir);
+	vec_normalize(*res);
+    free(up);
 	return (res);
 }
 
@@ -27,7 +28,7 @@ t_vec	*cam_up(t_vec *right, t_vec *dir)
 {
 	t_vec	*res;
 
-	res = vec_cross(dir, right);
+	res = vec_cross(*dir, *right);
 	return (res);
 }
 
@@ -55,5 +56,7 @@ t_vec	*look_at(t_cam *cam, t_vec *ray)
 	result->x = (a[0][0] * ray->x) + (a[1][0] * ray->y) + (a[2][0] * ray->z);
 	result->y = (a[0][1] * ray->x) + (a[1][1] * ray->y) + (a[2][1] * ray->z);
 	result->z = (a[0][2] * ray->x) + (a[1][2] * ray->y) + (a[2][2] * ray->z);
+    free(right);
+    free(up);
 	return (result);
 }

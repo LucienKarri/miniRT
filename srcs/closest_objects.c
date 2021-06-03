@@ -129,7 +129,10 @@ t_cy	*closing_cy(t_vec *pos, t_vec *ray, t_sc *sc)
 		tmp = tmp->next;
 	}
 	if (close_cy == NULL)
-		return (0);
+    {
+        free(tmp);
+        return (0);
+    }
 	close_cy->distance = c_cy;
     free(tmp);
 	return (close_cy);

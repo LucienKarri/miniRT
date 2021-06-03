@@ -22,7 +22,10 @@ int	closest_obj(t_vec *p, t_vec *light, t_sc *sc)
 		inter->cy = NULL;
 	if (inter->sp == NULL && inter->tr == NULL && inter->pl
 		== NULL && inter->sq == NULL && inter->cy == NULL)
-		return (0);
+    {
+        free(inter);
+        return (0);
+    }
     free(inter);
 	return (1);
 }
@@ -30,30 +33,33 @@ int	closest_obj(t_vec *p, t_vec *light, t_sc *sc)
 int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 {
 	t_l		*tmp_l;
-	t_vec	*light;
 	double	n_to_l;
 	double	i;
 	int		lightning;
+    t_vec   *vec[2];
 
 	tmp_l = sc->l;
-	p = vec_sum(p, vec_multiplication(n, 0.000001));
+    vec[0] = vec_multiplication(*n, 0.000001);
+	vec[1] = vec_sum(*p, *vec[0]);
+    free(vec[0]);
 	lightning = light_color(0, sc->a->color, sc->a->ratio);
 	while (tmp_l != NULL)
 	{
-		light = vec_subtract(tmp_l->v_point, p);
-		if (closest_obj(p, light, sc) == 0)
+		vec[0] = vec_subtract(*tmp_l->v_point, *vec[1]);
+		if (closest_obj(vec[1], vec[0], sc) == 0)
 		{
-			n_to_l = vec_dot_product(n, light);
+			n_to_l = vec_dot_product(*n, *vec[0]);
 			if (n_to_l > 0)
 			{
-				i = tmp_l->ratio * n_to_l / (vec_length(n) * vec_length(light));
+				i = tmp_l->ratio * n_to_l / (vec_length(*n) * vec_length(*vec[0]));
 				lightning = light_color(lightning, tmp_l->color, i);
 			}
-            free(light);
 		}
+        free(vec[0]);
 		tmp_l = tmp_l->next;
 	}
 	close_color = sum_color(close_color, lightning);
+    free(vec[1]);
     free(tmp_l);
 	return (close_color);
 }

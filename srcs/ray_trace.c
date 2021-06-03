@@ -49,53 +49,93 @@ void	dist_inter(t_inter *inter)
 void	n_inter(t_inter *inter, t_vec *ray, t_vec *pos)
 {
 	t_vec	*cam_to;
+	t_vec	*vec[2];
+	t_vec	*vec1[2];
+	t_vec   *n;
 
-	cam_to = vec_subtract(vec_sum(pos, vec_multiplication(ray, inter->dist)), pos);
+	vec1[0] = vec_multiplication(*ray, inter->dist);
+	vec1[1] = vec_sum(*pos, *vec1[0]);
+	cam_to = vec_subtract(*vec1[1], *pos);
+	vec_free(2, vec1);
 	if (inter->cy != NULL && inter->dist == inter->cy->distance)
-		inter->n = inter->cy->li;
+		n = cy_norm1(pos, ray, inter->cy);
+//		n = vec_default(inter->cy->li->x, inter->cy->li->y, inter->cy->li->z);
+//		n = inter->cy->li;
 	if (inter->tr != NULL && inter->dist == inter->tr->distance)
-		inter->n = vec_cross(vec_subtract(inter->tr->p2, inter->tr->p1),
-				   vec_subtract(inter->tr->p3, inter->tr->p1));
+	{
+		vec[0] = vec_subtract(*inter->tr->p2, *inter->tr->p1);
+		vec[1] = vec_subtract(*inter->tr->p3, *inter->tr->p1);
+		n = vec_cross(*vec[0], *vec[1]);
+		vec_free(2, vec);
+	}
 	if (inter->sq != NULL && inter->dist == inter->sq->distance)
 	{
-		inter->n = inter->sq->nrmd;
-		cam_to = vec_subtract(ray, pos);
+		n = vec_default(inter->sq->nrmd->x,inter->sq->nrmd->y, inter->sq->nrmd->z);
+	//	n = inter->sq->nrmd;
+		free(cam_to);
+		cam_to = vec_subtract(*ray, *pos);
 	}
 	if (inter->pl != NULL && inter->dist == inter->pl->distance)
-		inter->n = inter->pl->nrmd;
+		n = vec_default(inter->pl->nrmd->x, inter->pl->nrmd->y, inter->pl->nrmd->z);
+	//	n = inter->pl->nrmd;
 	if (inter->sp != NULL && inter->dist == inter->sp->distance)
-		inter->n = vec_subtract(vec_sum(pos, vec_multiplication(ray, inter->dist)), inter->sp->center);
-	if (vec_dot_product(cam_to, inter->n) > 0)
-		inter->n = vec_multiplication(inter->n, -1);
+	{
+		vec[0] = vec_multiplication(*ray, inter->dist);
+		vec[1] = vec_sum(*pos, *vec[0]);
+		n = vec_subtract(*vec[1], *inter->sp->center);
+		vec_free(2, vec);
+	}
+	if (vec_dot_product(*cam_to, *n) > 0)
+	{
+		inter->n = vec_multiplication(*n, -1);
+		free(n);
+	}
+	else
+		inter->n = n;
 	free(cam_to);
-	vec_normalize(inter->n);
+	vec_normalize(*inter->n);
 }
 
 int	ft_intersection(t_sc *scene, t_vec *ray)
 {
 	t_inter	*inter;
-	t_vec	*p;
+	t_vec	*p[2];
 	int		close_color;
 
 	inter = new_inter();
 	close_color = 0;
 	if (close_inter(scene->cam->pos, ray, scene, inter) == 0)
+	{
+//		if(inter->cy != NULL)
+//			free(inter->cy->li);
+		free(inter);
 		return (0);
+	}
 	else
 	{
 		dist_inter(inter);
 		n_inter(inter, ray, scene->cam->pos);
-		p = vec_sum(scene->cam->pos, vec_multiplication(ray, inter->dist));
-		close_color = lightning(p, inter->n, scene, inter->color);
+		p[0] = vec_multiplication(*ray, inter->dist);
+		p[1] = vec_sum(*scene->cam->pos, *p[0]);
+		close_color = lightning(p[1], inter->n, scene, inter->color);
+		vec_free(2, p);
+//		if(inter->cy != NULL)
+//			free(inter->cy->li);
+		if (inter->n != NULL)
+			free(inter->n);
+		free(inter);
 	}
-	free(inter);
-	free(p);
+//	if(inter->cy != NULL)
+//		free(inter->cy->li);
+//	free(inter);
 	return (close_color);
 }
 
 void	ray_tracing(t_data *data, t_sc *sc)
 {
 	t_screen	*scr;
+	t_vec		*ray;
+	t_vec		*new_ray;
 	int			color;
 
 	scr = screen_default(sc->width, sc->hight, sc->cam->fov);
@@ -107,11 +147,14 @@ void	ray_tracing(t_data *data, t_sc *sc)
 		while (scr->res_x <= sc->width / 2)
 		{
 			scr->ray_x = scr->res_x * scr->screen_x;
-			scr->ray = vec_default(scr->ray_x, scr->ray_y, 1);
-			vec_normalize(scr->ray);
-			scr->ray = look_at(sc->cam, scr->ray);
-			vec_normalize(scr->ray);
-			color = ft_intersection(sc, scr->ray);
+		//	ray = vec_default(scr->ray_x, scr->ray_y, 1);
+		//	vec_normalize(*ray);
+			new_ray = vec_default(scr->ray_x, scr->ray_y, 1);
+			ray = look_at(sc->cam, new_ray);
+			vec_normalize(*ray);
+			color = ft_intersection(sc, ray);
+			free(new_ray);
+			free(ray);
 			my_mlx_pixel_put(data, scr->mlx_x, scr->mlx_y, color);
 			scr->res_x++;
 			scr->mlx_x++;

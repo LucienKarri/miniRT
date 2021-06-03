@@ -15,7 +15,6 @@ t_cy	*cy_default(t_vec *origin, t_vec *nrmd, double t[2], int color)
 	new_cy->distance1 = 0;
 	new_cy->distance2 = 0;
 	new_cy->distance = 0;
-	new_cy->li = NULL;
 	new_cy->next = NULL;
 	return (new_cy);
 }

@@ -20,6 +20,5 @@ t_screen	*screen_default(double width, double hight, double fov)
 	screen->mlx_y = 0;
 	screen->ray_x = 0;
 	screen->ray_y = 0;
-	screen->ray = NULL;
 	return (screen);
 }

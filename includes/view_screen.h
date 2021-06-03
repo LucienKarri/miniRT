@@ -13,7 +13,6 @@ typedef struct s_screen
 	double	mlx_x;
 	double	ray_x;
 	double	ray_y;
-	t_vec	*ray;
 }				t_screen;
 
 t_screen	*screen_default(double width, double hight, double fov);
