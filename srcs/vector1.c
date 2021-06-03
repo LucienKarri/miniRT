@@ -17,3 +17,22 @@ t_vec	*vec_multiplication(t_vec vec, double k)
 {
 	return (vec_default(vec.x * k, vec.y * k, vec.z * k));
 }
+
+void	vec_free(int i, t_vec *vec[])
+{
+	while (i-- && i >= 0)
+	{
+		if (vec[i])
+			free(vec[i]);
+	}
+}
+
+int	vec_free_zero(int i, t_vec *vec[])
+{
+	while (i-- && i >= 0)
+	{
+		if (vec[i])
+			free(vec[i]);
+	}
+	return (0);
+}

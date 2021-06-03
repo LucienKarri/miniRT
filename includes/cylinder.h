@@ -10,8 +10,8 @@ typedef struct s_cy
 	double		distance1;
 	double		distance2;
 	double		distance;
-    double      dist;
-    double      k;
+	double		dist;
+	double		k;
 	int			color;
 	struct s_cy	*next;
 }				t_cy;

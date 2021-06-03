@@ -24,3 +24,11 @@ void	sq_list(t_sq **sq_list, t_vec *v[2], double side, int color)
 	new_sq->next = *sq_list;
 	*sq_list = new_sq;
 }
+
+t_vec	*sq_norm(t_sq *sq)
+{
+	t_vec	*n;
+
+	n = vec_default(sq->nrmd->x, sq->nrmd->y, sq->nrmd->z);
+	return (n);
+}

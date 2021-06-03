@@ -17,3 +17,9 @@ t_inter	*new_inter(void)
 	new->dist = 100000;
 	return (new);
 }
+
+int	inter_free(t_inter *inter)
+{
+	free(inter);
+	return (0);
+}

@@ -23,3 +23,11 @@ void	pl_list(t_pl **pl_list, t_vec *crd, t_vec *nrmd, int color)
 	new_pl->next = *pl_list;
 	*pl_list = new_pl;
 }
+
+t_vec	*pl_norm(t_pl *pl)
+{
+	t_vec	*n;
+
+	n = vec_default(pl->nrmd->x, pl->nrmd->y, pl->nrmd->z);
+	return (n);
+}

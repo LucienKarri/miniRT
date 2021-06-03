@@ -14,5 +14,6 @@ typedef struct s_sq
 t_sq	*sq_default(t_vec *center, t_vec *nrmd, double side, int color);
 void	sq_list(t_sq **sq_list, t_vec *v[2], double side, int color);
 double	sq_intersection(t_vec *pos, t_vec *ray, t_sq *sq);
+t_vec	*sq_norm(t_sq *sq);
 
 #endif

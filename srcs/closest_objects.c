@@ -23,7 +23,7 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc)
 	if (close_sp == NULL)
 		return (0);
 	close_sp->distance = c_sp;
-    free(tmp_sp);
+	free(tmp_sp);
 	return (close_sp);
 }
 
@@ -50,7 +50,7 @@ t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc)
 	if (close_tr == NULL)
 		return (0);
 	close_tr->distance = c_tr;
-    free(tmp_tr);
+	free(tmp_tr);
 	return (close_tr);
 }
 
@@ -77,7 +77,7 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	if (close_pl == NULL)
 		return (0);
 	close_pl->distance = c_pl;
-    free(tmp);
+	free(tmp);
 	return (close_pl);
 }
 
@@ -104,7 +104,7 @@ t_sq	*closing_sq(t_vec *pos, t_vec *ray, t_sc *sc)
 	if (close_sq == NULL)
 		return (0);
 	close_sq->distance = c_sq;
-    free(tmp);
+	free(tmp);
 	return (close_sq);
 }
 
@@ -129,11 +129,8 @@ t_cy	*closing_cy(t_vec *pos, t_vec *ray, t_sc *sc)
 		tmp = tmp->next;
 	}
 	if (close_cy == NULL)
-    {
-        free(tmp);
-        return (0);
-    }
+		return (0);
 	close_cy->distance = c_cy;
-    free(tmp);
+	free(tmp);
 	return (close_cy);
 }

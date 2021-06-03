@@ -22,6 +22,8 @@ double	vec_dot_product(t_vec vec1, t_vec vec2);
 t_vec	*vec_cross(t_vec vec1, t_vec vec2);
 t_vec	*vec_sum(t_vec vec1, t_vec vec2);
 t_vec	*vec_multiplication(t_vec vec, double k);
-void    vec_free(int i, t_vec *vec[]);
+void	vec_free(int i, t_vec *vec[]);
+int		vec_free_zero(int i, t_vec *vec[]);
+t_vec	*cam_to_anything(t_vec *pos, t_vec *ray, double dist);
 
 #endif

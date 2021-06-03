@@ -14,5 +14,6 @@ typedef struct s_inter
 }				t_inter;
 
 t_inter	*new_inter(void);
+int		inter_free(t_inter *inter);
 
 #endif

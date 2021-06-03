@@ -90,7 +90,6 @@ int	parsing_ambient_light(t_sc *scene, char *line)
 	int		count;
 	int		color;
 	double	ratio;
-	t_a		*ambient;
 
 	i = 1;
 	count = 0;
@@ -109,7 +108,6 @@ int	parsing_ambient_light(t_sc *scene, char *line)
 	}
 	if (ratio < 0 || ratio > 1)
 		error_and_exit(-9);
-	ambient = a_default(ratio, color);
-	scene->a = ambient;
+	scene->a = a_default(ratio, color);
 	return (0);
 }

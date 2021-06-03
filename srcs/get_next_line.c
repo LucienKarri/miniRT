@@ -18,13 +18,15 @@ int	get_next_line(int fd, char **line)
 	char		*rd_s;
 	int			fd_val;
 
-    fd_val = 1;
+	fd_val = 1;
 	if (fd < 0 || !line || 1 <= 0)
 		return (-1);
-	if (!(rd_s = (char *)malloc(sizeof(char) * (1 + 1))))
+	rd_s = (char *)malloc(sizeof(char) * (1 + 1));
+	if (!rd_s)
 		return (-1);
-	while (search_nl(buf_s) == 0 && (fd_val = read(fd, rd_s, 1)) > 0)
+	while (search_nl(buf_s) == 0 && fd_val > 0)
 	{
+		fd_val = read(fd, rd_s, 1);
 		rd_s[fd_val] = '\0';
 		buf_s = ft_strjoin(buf_s, rd_s);
 	}

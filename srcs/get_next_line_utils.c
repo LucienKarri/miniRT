@@ -20,7 +20,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	n = 0;
-	if (!(arr = (char *)malloc((ft_strl(s1) + ft_strl(s2) + 1) * sizeof(char))))
+	arr = (char *)malloc((ft_strl(s1) + ft_strl(s2) + 1) * sizeof(char));
+	if (!arr)
 		return (NULL);
 	if (s1)
 	{
@@ -76,7 +77,8 @@ char	*ft_strdup(char *s)
 	n = 0;
 	while (s && s[n] != '\0' && s[n] != '\n')
 		n++;
-	if (!(arr = malloc((n + 1) * sizeof(char))))
+	arr = malloc((n + 1) * sizeof(char));
+	if (!arr)
 		return (NULL);
 	n = 0;
 	while (s && s[n] != '\0' && s[n] != '\n')
@@ -105,7 +107,8 @@ char	*clean_s(char *s)
 		free(s);
 		return (NULL);
 	}
-	if (!(cs = (char *)malloc(sizeof(char) * ((ft_strl(s) - i) + 1))))
+	cs = (char *)malloc(sizeof(char) * ((ft_strl(s) - i) + 1));
+	if (!cs)
 		return (NULL);
 	i++;
 	while (s[i] != '\0')

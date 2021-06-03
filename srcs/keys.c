@@ -2,16 +2,16 @@
 
 int	keys_control(int keycode, t_all *all)
 {
-    t_cam   *tmp;
+	t_cam	*tmp;
 
-    tmp = all->sc->cam;
+	tmp = all->sc->cam;
 	if (keycode == 65363 && all->sc->cam != NULL)
-    {
-        all->sc->cam = all->sc->cam->next;
-        free(tmp->direction);
-        free(tmp->pos);
-        free(tmp);
-    }
+	{
+		all->sc->cam = all->sc->cam->next;
+		free(tmp->direction);
+		free(tmp->pos);
+		free(tmp);
+	}
 	if (keycode == 65307 || all->sc->cam == NULL)
 	{
 		mlx_destroy_window(all->mlx, all->win);
