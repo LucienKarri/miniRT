@@ -57,12 +57,14 @@ RM				=	rm -rf
 all:			${NAME}
 
 ${NAME}:		${OBJS}
+						make -C ./mlx_linux
 						${CC} ${CFLAGS} -I ${INCLUDES} ${OBJS} -L ${MLX} ${LFLAGS} -o ${NAME}
 
 clean:
 				${RM} ${OBJS}
 
 fclean:			clean
+						make clean -C ./mlx_linux
 						${RM} ${NAME}
 
 re:				fclean all

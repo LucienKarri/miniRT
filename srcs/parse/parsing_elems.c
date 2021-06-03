@@ -32,8 +32,7 @@ int	parsing_cam(t_sc *scene, char *line)
 {
 	int		i;
 	int		count;
-	t_vec	*pos;
-	t_vec	*dir;
+	t_vec	*v[2];
 	double	fov;
 
 	i = 1;
@@ -45,13 +44,16 @@ int	parsing_cam(t_sc *scene, char *line)
 		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
 			return (-1);
 		if (count == 1)
-			i += ft_ato_vec(&line[i], &pos);
+			i += ft_ato_vec(&line[i], &v[0]);
 		if (count == 2)
-			i += ft_ato_vec(&line[i], &dir);
+			i += ft_ato_vec(&line[i], &v[1]);
 		if (count == 3)
 			i += ft_ato_float(&line[i], &fov);
 	}
-	cam_list(&scene->cam, pos, dir, fov);
+	if (v[1]->x < -1 || v[1]->x > 1 || v[1]->y < -1 || v[1]->y > 1
+		|| v[1]->z < -1 || v[1]->z > 1 || fov < 0 || fov > 180)
+		error_and_exit(-9);
+	cam_list(&scene->cam, v[0], v[1], fov);
 	return (0);
 }
 

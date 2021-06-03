@@ -28,6 +28,13 @@ int	choise_element(t_sc *sc, char *line)
 	return (0);
 }
 
+void	check_elem(t_vec *v)
+{
+	if (v->x < -1 || v->x > 1 || v->y < -1 || v->y > 1
+		|| v->z < -1 || v->z > 1)
+		error_and_exit(-9);
+}
+
 t_sc	*parsing(int fd)
 {
 	t_sc	*new_scene;

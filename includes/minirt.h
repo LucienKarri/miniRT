@@ -55,6 +55,7 @@ int		parsing_triangle(t_sc *scene, char *line);
 int		parsing_plane(t_sc *scene, char *line);
 int		parsing_square(t_sc *scene, char *line);
 int		parsing_cylinder(t_sc *scene, char *line);
+void	check_elem(t_vec *v);
 
 void	bmp_file(t_all *all);
 void	bmp_info(t_all *all, int fd);

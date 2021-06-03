@@ -77,6 +77,9 @@ int	parsing_plane(t_sc *scene, char *line)
 		if (count == 3)
 			i += ft_ato_col(&line[i], &color);
 	}
+	if (v[1]->x < -1 || v[1]->x > 1 || v[1]->y < -1 || v[1]->y > 1
+		|| v[1]->z < -1 || v[1]->z > 1)
+		error_and_exit(-9);
 	pl_list(&scene->pl, v[0], v[1], color);
 	return (0);
 }
@@ -104,6 +107,7 @@ int	parsing_square(t_sc *scene, char *line)
 		if (k[1] == 4)
 			k[0] += ft_ato_col(&line[k[0]], &k[2]);
 	}
+	check_elem(v[1]);
 	sq_list(&scene->sq, v, side, k[2]);
 	return (0);
 }
