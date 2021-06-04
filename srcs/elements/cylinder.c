@@ -23,7 +23,7 @@ void	cy_list(t_cy **cy_list, t_vec *v[2], double t[2], int color)
 {
 	t_cy	*new_cy;
 
-    check_elem(v[1]);
+	check_elem(v[1]);
 	new_cy = cy_default(v[0], v[1], t, color);
 	new_cy->next = *cy_list;
 	*cy_list = new_cy;
