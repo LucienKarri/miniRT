@@ -20,5 +20,9 @@ void	error_and_exit(int code)
 		write(STDERR_FILENO, "Error\nBad resolution\n", 22);
 	if (code == -9)
 		write(STDERR_FILENO, "Error\nBad range\n", 17);
+	if (code == -10)
+		write(STDERR_FILENO, "Error\nBad color\n", 17);
+	if (code == -11)
+		write(STDERR_FILENO, "Error\nBad EOL\n", 15);
 	exit(code);
 }

@@ -35,6 +35,18 @@ void	check_elem(t_vec *v)
 		error_and_exit(-9);
 }
 
+void	check_range(double t)
+{
+	if (t < 0)
+		error_and_exit(-9);
+}
+
+void	check_eol(char *line, int i, int count)
+{
+	if (count != i || (count == i && line[0] != '\0'))
+		error_and_exit(-11);
+}
+
 t_sc	*parsing(int fd)
 {
 	t_sc	*new_scene;

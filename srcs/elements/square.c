@@ -20,6 +20,7 @@ void	sq_list(t_sq **sq_list, t_vec *v[2], double side, int color)
 {
 	t_sq	*new_sq;
 
+	check_range(side);
 	new_sq = sq_default(v[0], v[1], side, color);
 	new_sq->next = *sq_list;
 	*sq_list = new_sq;

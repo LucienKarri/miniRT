@@ -17,7 +17,7 @@ typedef struct s_cy
 }				t_cy;
 
 t_cy	*cy_default(t_vec *origin, t_vec *nrmd, double t[2], int color);
-void	cy_list(t_cy **cy_list, t_vec *v[2], double t[2], int color);
+int		cy_list(t_cy **cy_list, t_vec *v[2], double t[2], int color);
 double	cylinder_intersection(t_vec *pos, t_vec *ray, t_cy *cy);
 t_vec	*cy_norm1(t_vec *pos, t_vec *ray, t_cy *cy);
 

@@ -10,11 +10,11 @@ int	parsing_sphere(t_sc *scene, char *line)
 
 	i = 2;
 	count = 0;
-	while (++count <= 3)
+	while (++count <= 3 && line[i])
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
 			i++;
-		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+		if ((line[i] != '-' && (line[i] < '0' || line[i] > '9')))
 			return (-1);
 		if (count == 1)
 			i += ft_ato_vec(&line[i], &center);
@@ -23,6 +23,7 @@ int	parsing_sphere(t_sc *scene, char *line)
 		if (count == 3)
 			i += ft_ato_col(&line[i], &color);
 	}
+	check_eol(&line[i], 4, count);
 	sp_list(&scene->sp, center, radius, color);
 	return (0);
 }
@@ -36,11 +37,11 @@ int	parsing_triangle(t_sc *scene, char *line)
 
 	i = 2;
 	count = 0;
-	while (++count <= 4)
+	while (++count <= 4 && line[i])
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
 			i++;
-		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+		if ((line[i] != '-' && (line[i] < '0' || line[i] > '9')))
 			return (-1);
 		if (count == 1)
 			i += ft_ato_vec(&line[i], &p[0]);
@@ -51,6 +52,7 @@ int	parsing_triangle(t_sc *scene, char *line)
 		if (count == 4)
 			i += ft_ato_col(&line[i], &color);
 	}
+	check_eol(&line[i], 5, count);
 	tr_list(&scene->tr, p, color);
 	return (0);
 }
@@ -64,11 +66,11 @@ int	parsing_plane(t_sc *scene, char *line)
 
 	i = 2;
 	count = 0;
-	while (++count <= 3)
+	while (++count <= 3 && line[i])
 	{
 		while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
 			i++;
-		if ((line[i] != '-' && line[i] <= '0' && line[i] >= '9'))
+		if ((line[i] != '-' && (line[i] < '0' || line[i] > '9')))
 			return (-1);
 		if (count == 1)
 			i += ft_ato_vec(&line[i], &v[0]);
@@ -77,9 +79,8 @@ int	parsing_plane(t_sc *scene, char *line)
 		if (count == 3)
 			i += ft_ato_col(&line[i], &color);
 	}
-	if (v[1]->x < -1 || v[1]->x > 1 || v[1]->y < -1 || v[1]->y > 1
-		|| v[1]->z < -1 || v[1]->z > 1)
-		error_and_exit(-9);
+	check_elem(v[1]);
+	check_eol(&line[i], 4, count);
 	pl_list(&scene->pl, v[0], v[1], color);
 	return (0);
 }
@@ -92,11 +93,11 @@ int	parsing_square(t_sc *scene, char *line)
 
 	k[0] = 2;
 	k[1] = 0;
-	while (++k[1] <= 4)
+	while (++k[1] <= 4 && line[k[0]])
 	{
 		while (line[k[0]] == ' ' || (line[k[0]] >= 9 && line[k[0]] <= 13))
 			k[0]++;
-		if ((line[k[0]] != '-' && line[k[0]] <= '0' && line[k[0]] >= '9'))
+		if ((line[k[0]] != '-' && (line[k[0]] < '0' || line[k[0]] > '9')))
 			return (-1);
 		if (k[1] == 1)
 			k[0] += ft_ato_vec(&line[k[0]], &v[0]);
@@ -108,6 +109,7 @@ int	parsing_square(t_sc *scene, char *line)
 			k[0] += ft_ato_col(&line[k[0]], &k[2]);
 	}
 	check_elem(v[1]);
+	check_eol(&line[k[0]], 5, k[1]);
 	sq_list(&scene->sq, v, side, k[2]);
 	return (0);
 }
@@ -120,11 +122,11 @@ int	parsing_cylinder(t_sc *scene, char *line)
 
 	k[0] = 2;
 	k[1] = 0;
-	while (++k[1] <= 5)
+	while (++k[1] <= 5 && line[k[0]])
 	{
 		while (line[k[0]] == ' ' || (line[k[0]] >= 9 && line[k[0]] <= 13))
 			k[0]++;
-		if ((line[k[0]] != '-' && line[k[0]] <= '0' && line[k[0]] >= '9'))
+		if ((line[k[0]] != '-' && (line[k[0]] < '0' || line[k[0]] > '9')))
 			return (-1);
 		if (k[1] == 1)
 			k[0] += ft_ato_vec(&line[k[0]], &v[0]);
@@ -137,6 +139,6 @@ int	parsing_cylinder(t_sc *scene, char *line)
 		if (k[1] == 5)
 			k[0] += ft_ato_col(&line[k[0]], &k[2]);
 	}
-	cy_list(&scene->cy, v, t, k[2]);
-	return (0);
+	check_eol(&line[k[0]], 6, k[1]);
+	return (cy_list(&scene->cy, v, t, k[2]));
 }

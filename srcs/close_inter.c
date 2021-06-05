@@ -14,7 +14,7 @@ t_inter	*new_inter(void)
 	new->tr = NULL;
 	new->n = NULL;
 	new->color = 0;
-	new->dist = 100000;
+	new->dist = 2147483647;
 	return (new);
 }
 

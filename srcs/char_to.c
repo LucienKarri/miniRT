@@ -69,7 +69,7 @@ int	ft_ato_vec(char *str, t_vec **vec)
 			return (-1);
 		i = i + writed;
 		if (xyz < 2 && str[i] != ',')
-			return (-1);
+			error_and_exit(-6);
 		else if (xyz < 2 && str[i] == ',')
 			i++;
 		xyz++;
@@ -94,12 +94,12 @@ int	ft_ato_col(char *str, int *color)
 	{
 		writen = ft_atoi(&str[i], &rgb[canal]);
 		if (writen < 0)
-			return (-1);
+			error_and_exit(-6);
 		if (rgb[canal] < 0 || rgb[canal] > 255)
-			return (-1);
+			error_and_exit(-10);
 		i = writen + i;
 		if (canal < 2 && str[i] != ',')
-			return (-1);
+			error_and_exit(-6);
 		else if (canal < 2 && str[i] == ',')
 			i++;
 		canal++;

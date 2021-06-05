@@ -21,6 +21,7 @@ void 	sp_list(t_sp **sp_list, t_vec *center, double diameter, int color)
 {
 	t_sp	*new_sp;
 
+	check_range(diameter);
 	new_sp = sp_default(center, diameter, color);
 	new_sp->next = *sp_list;
 	*sp_list = new_sp;

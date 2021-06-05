@@ -8,7 +8,7 @@ t_sp	*closing_sp(t_vec *pos, t_vec *ray, t_sc *sc)
 	double	c_sp;
 
 	close_sp = NULL;
-	c_sp = 100000;
+	c_sp = 2147483647;
 	tmp_sp = sc->sp;
 	while (tmp_sp != NULL)
 	{
@@ -34,7 +34,7 @@ t_tr	*closing_tr(t_vec *pos, t_vec *ray, t_sc *sc)
 	double	dist_tr;
 	double	c_tr;
 
-	c_tr = 100000;
+	c_tr = 2147483647;
 	close_tr = NULL;
 	tmp_tr = sc->tr;
 	while (tmp_tr != NULL)
@@ -61,7 +61,7 @@ t_pl	*closing_pl(t_vec *pos, t_vec *ray, t_sc *sc)
 	double	dist_pl;
 	double	c_pl;
 
-	c_pl = 100000;
+	c_pl = 2147483647;
 	close_pl = NULL;
 	tmp = sc->pl;
 	while (tmp != NULL)
@@ -89,7 +89,7 @@ t_sq	*closing_sq(t_vec *pos, t_vec *ray, t_sc *sc)
 	double	c_sq;
 
 	close_sq = NULL;
-	c_sq = 100000;
+	c_sq = 2147483647;
 	tmp = sc->sq;
 	while (tmp != NULL)
 	{
@@ -116,7 +116,7 @@ t_cy	*closing_cy(t_vec *pos, t_vec *ray, t_sc *sc)
 	double	c_cy;
 
 	close_cy = NULL;
-	c_cy = 100000;
+	c_cy = 2147483647;
 	tmp = sc->cy;
 	while (tmp != NULL)
 	{
