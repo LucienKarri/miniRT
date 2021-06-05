@@ -32,9 +32,9 @@ t_vec	*sp_norm(t_vec *pos, t_vec *ray, t_sp *sp, double dist)
 	t_vec	*vec[2];
 	t_vec	*n;
 
-	vec[0] = vec_multiplication(*ray, dist);
-	vec[1] = vec_sum(*pos, *vec[0]);
-	n = vec_subtract(*vec[1], *sp->center);
+	vec[0] = vec_multiplication(ray, dist);
+	vec[1] = vec_sum(pos, vec[0]);
+	n = vec_subtract(vec[1], sp->center);
 	vec_free(2, vec);
 	return (n);
 }

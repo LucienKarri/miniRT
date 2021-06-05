@@ -30,9 +30,9 @@ t_vec	*tr_norm(t_tr *tr)
 	t_vec	*vec[2];
 	t_vec	*n;
 
-	vec[0] = vec_subtract(*tr->p2, *tr->p1);
-	vec[1] = vec_subtract(*tr->p3, *tr->p1);
-	n = vec_cross(*vec[0], *vec[1]);
+	vec[0] = vec_subtract(tr->p2, tr->p1);
+	vec[1] = vec_subtract(tr->p3, tr->p1);
+	n = vec_cross(vec[0], vec[1]);
 	vec_free(2, vec);
 	return (n);
 }

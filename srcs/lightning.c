@@ -37,13 +37,13 @@ int	ret_col(int light, t_sc *sc, t_vec *n, t_vec *p)
 	tmp_l = sc->l;
 	while (tmp_l != NULL)
 	{
-		vec = vec_subtract(*tmp_l->v_point, *p);
+		vec = vec_subtract(tmp_l->v_point, p);
 		if (closest_obj(p, vec, sc) == 0)
 		{
-			n_to_l = vec_dot_product(*n, *vec);
+			n_to_l = vec_dot_product(n, vec);
 			if (n_to_l > 0)
 			{
-				i = tmp_l->ratio * n_to_l / (vec_length(*n) * vec_length(*vec));
+				i = tmp_l->ratio * n_to_l / (vec_length(n) * vec_length(vec));
 				light = light_color(light, tmp_l->color, i);
 			}
 		}
@@ -58,8 +58,8 @@ int	lightning(t_vec *p, t_vec *n, t_sc *sc, int close_color)
 	int		light;
 	t_vec	*vec[2];
 
-	vec[0] = vec_multiplication(*n, 0.000001);
-	vec[1] = vec_sum(*p, *vec[0]);
+	vec[0] = vec_multiplication(n, 0.000001);
+	vec[1] = vec_sum(p, vec[0]);
 	free(vec[0]);
 	light = light_color(0, sc->a->color, sc->a->ratio);
 	light = ret_col(light, sc, n, vec[1]);

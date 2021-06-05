@@ -59,15 +59,15 @@ void	n_inter(t_inter *inter, t_vec *ray, t_vec *pos)
 	{
 		vec[1] = sq_norm(inter->sq);
 		free(vec[0]);
-		vec[0] = vec_subtract(*ray, *pos);
+		vec[0] = vec_subtract(ray, pos);
 	}
 	if (inter->pl != NULL && inter->dist == inter->pl->distance)
 		vec[1] = pl_norm(inter->pl);
 	if (inter->sp != NULL && inter->dist == inter->sp->distance)
 		vec[1] = sp_norm(pos, ray, inter->sp, inter->dist);
-	if (vec_dot_product(*vec[0], *vec[1]) > 0)
+	if (vec_dot_product(vec[0], vec[1]) > 0)
 	{
-		inter->n = vec_multiplication(*vec[1], -1);
+		inter->n = vec_multiplication(vec[1], -1);
 		free(vec[1]);
 	}
 	else
@@ -92,9 +92,9 @@ int	ft_intersection(t_sc *scene, t_vec *ray)
 	{
 		dist_inter(inter);
 		n_inter(inter, ray, scene->cam->pos);
-		vec_normalize(*inter->n);
-		p[0] = vec_multiplication(*ray, inter->dist);
-		p[1] = vec_sum(*scene->cam->pos, *p[0]);
+		vec_normalize(inter->n);
+		p[0] = vec_multiplication(ray, inter->dist);
+		p[1] = vec_sum(scene->cam->pos, p[0]);
 		close_color = lightning(p[1], inter->n, scene, inter->color);
 		vec_free(2, p);
 		if (inter->n != NULL)
