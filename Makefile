@@ -1,6 +1,6 @@
 NAME			=	miniRT
 
-INCLUDES		=	./includes/
+INCLUDES		=	includes/
 
 SRCS			=	srcs/vector.c \
 					srcs/vector1.c \
